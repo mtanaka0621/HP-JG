@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="JG CORPORATION の管理会計用語集（Management Accounting Glossary）。原価計算・予算管理・KPI 設計・業績評価・意思決定会計まで、経営の意思決定を支える管理会計の主要 50 キーワードを、コンサルティングの現場目線でわかりやすく整理しました。">
+    <title>管理会計 Glossary｜Management Accounting 用語集 ｜ JG CORPORATION</title>
+    <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        /* ============== Management Accounting Glossary page ============== */
+        #glossary-intro .lead-block {
+            max-width: 980px;
+            margin: 0 auto;
+            font-family: var(--f-jp);
+            line-height: 2.0;
+            color: var(--c-text-mute);
+        }
+        #glossary-intro .lead-block p { margin-bottom: 18px; }
+        #glossary-intro .lead-block p:last-child { margin-bottom: 0; }
+
+        /* Category navigation */
+        .gl-catnav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        .gl-catnav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border: 1px solid var(--c-line);
+            border-radius: 999px;
+            font-family: var(--f-sans);
+            font-size: 12px;
+            letter-spacing: .15em;
+            color: var(--c-text-mute);
+            text-decoration: none;
+            transition: border-color .25s ease, color .25s ease, background .25s ease;
+        }
+        .gl-catnav a:hover {
+            border-color: var(--c-accent);
+            color: #fff;
+            background: rgba(230,0,126,0.08);
+        }
+        .gl-catnav a i { color: var(--c-accent); font-size: 11px; }
+
+        /* Category header */
+        .gl-cat-head {
+            display: flex;
+            align-items: baseline;
+            gap: 18px;
+            margin-bottom: 32px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--c-line);
+        }
+        .gl-cat-head .cat-num {
+            font-family: var(--f-sans);
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--c-accent);
+            letter-spacing: .05em;
+        }
+        .gl-cat-head .cat-title {
+            font-family: var(--f-jp);
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--c-text);
+            letter-spacing: .04em;
+            margin: 0;
+        }
+        .gl-cat-head .cat-en {
+            font-family: var(--f-sans);
+            font-size: 12px;
+            letter-spacing: .25em;
+            color: var(--c-text-soft);
+            margin-left: auto;
+        }
+
+        /* Glossary grid */
+        .gl-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 56px;
+        }
+        .gl-item {
+            position: relative;
+            background: linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.005) 100%);
+            border: 1px solid var(--c-line);
+            border-left: 3px solid var(--c-accent);
+            border-radius: 4px;
+            padding: 22px 24px 22px;
+            transition: border-color .3s ease, transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease;
+        }
+        .gl-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--c-line-strong);
+            border-left-color: var(--c-accent);
+            box-shadow: 0 14px 32px -18px rgba(230,0,126,0.35),
+                        0 6px 18px -10px rgba(0,0,0,0.55);
+        }
+        .gl-item .gl-num {
+            font-family: var(--f-sans);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .2em;
+            color: var(--c-accent-2);
+            margin-bottom: 6px;
+        }
+        .gl-item .gl-term {
+            font-family: var(--f-jp);
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 0 4px;
+            letter-spacing: .03em;
+            line-height: 1.4;
+        }
+        .gl-item .gl-en {
+            font-family: var(--f-sans);
+            font-size: 11px;
+            letter-spacing: .12em;
+            color: var(--c-text-soft);
+            margin-bottom: 12px;
+        }
+        .gl-item .gl-desc {
+            font-family: var(--f-jp);
+            font-size: 13px;
+            line-height: 1.9;
+            color: var(--c-text-mute);
+            margin: 0;
+        }
+        .gl-item .gl-desc strong {
+            color: var(--c-text);
+            font-weight: 600;
+        }
+
+        @media (max-width: 800px) {
+            .gl-grid { grid-template-columns: 1fr; gap: 14px; }
+            .gl-cat-head { flex-wrap: wrap; gap: 10px; }
+            .gl-cat-head .cat-en { margin-left: 0; width: 100%; }
+            .gl-cat-head .cat-num { font-size: 24px; }
+            .gl-cat-head .cat-title { font-size: 19px; }
+            .gl-item { padding: 18px 20px; }
+            .gl-item .gl-term { font-size: 16px; }
+            .gl-catnav { gap: 8px; }
+            .gl-catnav a { padding: 8px 14px; font-size: 11px; }
+        }
+
+        /* Outro */
+        #glossary-outro .outro-card {
+            max-width: 880px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 48px 32px;
+            border: 1px solid var(--c-line);
+            border-radius: 4px;
+            background: linear-gradient(180deg, rgba(230,0,126,0.04), rgba(10,10,12,0.4));
+        }
+        #glossary-outro .outro-card h3 {
+            font-family: var(--f-jp);
+            font-size: 22px;
+            margin: 0 0 12px;
+            color: var(--c-text);
+        }
+        #glossary-outro .outro-card p {
+            color: var(--c-text-mute);
+            line-height: 1.9;
+            margin: 0 0 20px;
+        }
+        #glossary-outro .btn-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body id="page-mgmt-acct">
+
+<!-- ============== Header ============== -->
+<header class="site-header">
+    <div class="nav-inner">
+        <a href="index.html" class="brand" aria-label="JG CORPORATION">
+            <img class="logo-img" src="images/logo/jg-corporation-banner.png" alt="JG CORPORATION">
+        </a>
+        <button class="nav-toggle" aria-label="メニュー" aria-controls="nav-main">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-main" id="nav-main">
+            <li><a href="about.html">About</a></li>
+            <li><a href="feature.html">Feature</a></li>
+            <li class="has-dropdown">
+                <button type="button" class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Services<span class="nav-dd-caret" aria-hidden="true"></span></button>
+                <ul class="nav-dd-menu" role="menu">
+                    <li><a href="services.html">Services <span class="nav-dd-sub">サービス一覧</span></a></li>
+                    <li><a href="retechvision.html">Retech Vision <span class="nav-dd-sub">不動産業向け SaaS</span></a></li>
+                </ul>
+            </li>
+            <li><a href="recruitment.html">Recruitment</a></li>
+            <li><a href="contribution.html">Contribution</a></li>
+            <li class="has-dropdown">
+                <button type="button" class="nav-dd-toggle is-active" aria-haspopup="true" aria-expanded="false">Study Room<span class="nav-dd-caret" aria-hidden="true"></span></button>
+                <ul class="nav-dd-menu" role="menu">
+                    <li><a href="think.html">AI <span class="nav-dd-sub">AI Glossary</span></a></li>
+                    <li><a href="technology.html">Technology <span class="nav-dd-sub">Technology Glossary</span></a></li>
+                    <li><a href="it.html">IT <span class="nav-dd-sub">IT / SI Glossary</span></a></li>
+                    <li><a href="pm.html">PM <span class="nav-dd-sub">Project Management</span></a></li>
+                    <li><a href="consulting.html">Consulting <span class="nav-dd-sub">Consulting Glossary</span></a></li>
+                    <li><a href="solution.html">Solution <span class="nav-dd-sub">Solution Glossary</span></a></li>
+                    <li><a href="scm.html">SCM <span class="nav-dd-sub">SCM Glossary</span></a></li>
+                    <li><a href="management-accounting.html" class="is-active">管理会計 <span class="nav-dd-sub">Management Accounting</span></a></li>
+                    <li><a href="legal-tax-hr.html">法務・税務・労務 <span class="nav-dd-sub">Legal / Tax / HR</span></a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+
+<main class="page-wrapper">
+
+<!-- ============== Page banner ============== -->
+<section class="page-banner">
+    <div class="page-banner-bg" style="background-image: url('images/hero/management-accounting.jpg');"></div>
+    <div class="banner-hud" aria-hidden="true"><span class="tl"></span><span class="tr"></span><span class="bl"></span><span class="br"></span></div>
+    <div class="container">
+        <h1 class="reveal">MANAGEMENT <span style="color: var(--c-accent);">ACCOUNTING.</span></h1>
+        <p class="lead reveal">財務会計が「過去を映す鏡」だとすれば、管理会計は「未来を照らす羅針盤」──経営の意思決定を支える管理会計の主要キーワードを、コンサルティングと業績管理の現場目線でわかりやすく整理しました。</p>
+    </div>
+</section>
+
+<!-- ============== Intro / Category Nav ============== -->
+<section class="section" id="glossary-intro">
+    <div class="container">
+        <div class="section-head reveal" style="text-align:center;">
+            <div class="eyebrow">Management Accounting Glossary</div>
+            <h2>管理会計 関連用語集<br><span class="accent">50 のキーワード</span></h2>
+        </div>
+
+        <div class="lead-block reveal">
+            <p>管理会計は、外部報告のためではなく <strong style="color: var(--c-text);">「経営の意思決定」と「業績管理」</strong> のためのアカウンティングです。原価計算・予算管理・KPI 設計・投資判断・業績評価といった一連の仕組みが、戦略を数値で語り、現場の行動を変える力を持ちます。</p>
+            <p>本ページでは、JG CORPORATION のコンサルタントが業績管理改革・経営管理高度化のプロジェクトで頻繁に扱う管理会計用語を <strong style="color: var(--c-text);">5 つのカテゴリ・50 語</strong> に整理し、それぞれを 2〜3 行のシンプルな説明にまとめました。経理・経営企画・事業部門の共通言語を整える素材として活用いただけます。</p>
+        </div>
+
+        <nav class="gl-catnav reveal" aria-label="カテゴリ目次">
+            <a href="#cat-foundation"><i class="fas fa-circle"></i>Foundations</a>
+            <a href="#cat-costing"><i class="fas fa-circle"></i>Costing</a>
+            <a href="#cat-budget"><i class="fas fa-circle"></i>Budgeting</a>
+            <a href="#cat-performance"><i class="fas fa-circle"></i>Performance</a>
+            <a href="#cat-decision"><i class="fas fa-circle"></i>Decision Making</a>
+        </nav>
+    </div>
+</section>
+
+<!-- ============== Category 1: Foundations ============== -->
+<section class="section section--alt" id="cat-foundation">
+    <div class="container">
+        <div class="gl-cat-head reveal">
+            <span class="cat-num">01</span>
+            <h2 class="cat-title">管理会計の基礎</h2>
+            <span class="cat-en">FOUNDATIONS</span>
+        </div>
+
+        <div class="gl-grid reveal">
+            <article class="gl-item">
+                <div class="gl-num">No.01</div>
+                <h3 class="gl-term">管理会計</h3>
+                <div class="gl-en">Management Accounting</div>
+                <p class="gl-desc">経営者・管理者が<strong>意思決定と業績管理を行うための会計</strong>。法定の財務会計と異なり、目的に応じて自由に集計軸・期間・基準を設計できる点が最大の特徴。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.02</div>
+                <h3 class="gl-term">財務会計との違い</h3>
+                <div class="gl-en">Financial vs. Management Accounting</div>
+                <p class="gl-desc">財務会計は<strong>外部報告・過去・法定基準</strong>が中心。管理会計は<strong>内部活用・未来志向・自由設計</strong>が中心。両者は出発点となる仕訳は共有するが、編集軸と利用目的が大きく異なる。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.03</div>
+                <h3 class="gl-term">セグメント別損益</h3>
+                <div class="gl-en">Segment P&amp;L</div>
+                <p class="gl-desc">事業部・製品・顧客・チャネル・地域などの<strong>セグメント単位で損益を把握する</strong>仕組み。経営判断の解像度を決定づける管理会計の中核アウトプットで、配賦設計の善し悪しが妥当性を左右する。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.04</div>
+                <h3 class="gl-term">責任会計</h3>
+                <div class="gl-en">Responsibility Accounting</div>
+                <p class="gl-desc">権限と責任の範囲に応じて<strong>業績を測定・評価する仕組み</strong>。コストセンター・プロフィットセンター・インベストメントセンターに区分し、組織設計と評価制度を結びつける考え方。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.05</div>
+                <h3 class="gl-term">プロフィットセンター</h3>
+                <div class="gl-en">Profit Center</div>
+                <p class="gl-desc">収益と費用の両方に責任を持つ管理単位。<strong>事業部制やカンパニー制</strong>と相性が良く、損益という共通指標で各部門を評価する仕組みとして広く採用される。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.06</div>
+                <h3 class="gl-term">コストセンター</h3>
+                <div class="gl-en">Cost Center</div>
+                <p class="gl-desc">収益責任を持たず、<strong>費用の発生・管理に責任を負う</strong>単位。本社部門・工場・物流センターなどが典型例で、効率性と品質をKPI に評価する。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.07</div>
+                <h3 class="gl-term">インベストメントセンター</h3>
+                <div class="gl-en">Investment Center</div>
+                <p class="gl-desc">損益に加え、<strong>投下資本の責任</strong>まで負う管理単位。ROI・ROIC・経済付加価値（EVA）で評価され、資本効率まで踏み込んだ経営を担う事業ユニットに適用される。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.08</div>
+                <h3 class="gl-term">配賦</h3>
+                <div class="gl-en">Allocation</div>
+                <p class="gl-desc">複数のセグメントで共通に発生したコストを、<strong>一定の基準で各セグメントに割り振ること</strong>。配賦基準の選定が結果の納得感を左右し、経営判断の妥当性に直結する重要論点。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.09</div>
+                <h3 class="gl-term">内部振替価格</h3>
+                <div class="gl-en">Transfer Pricing</div>
+                <p class="gl-desc">グループ・事業部間で<strong>モノやサービスをやり取りする際の社内取引価格</strong>。市場価格法・原価加算法などがあり、各部門の業績評価とグループ全体最適のバランスを設計する必要がある。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.10</div>
+                <h3 class="gl-term">経営管理サイクル</h3>
+                <div class="gl-en">Management Control Cycle</div>
+                <p class="gl-desc">戦略 → 計画 → 実行 → 測定 → 評価 → 改善 という<strong>PDCA を回す枠組み</strong>。管理会計はこのサイクルを数値面で支える計器盤として、各ステップに情報を供給する役割を担う。</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ============== Category 2: Costing ============== -->
+<section class="section" id="cat-costing">
+    <div class="container">
+        <div class="gl-cat-head reveal">
+            <span class="cat-num">02</span>
+            <h2 class="cat-title">原価計算</h2>
+            <span class="cat-en">COSTING</span>
+        </div>
+
+        <div class="gl-grid reveal">
+            <article class="gl-item">
+                <div class="gl-num">No.11</div>
+                <h3 class="gl-term">原価計算</h3>
+                <div class="gl-en">Cost Accounting</div>
+                <p class="gl-desc">製品・サービス 1 単位あたりのコストを把握する仕組み。<strong>製品別損益・販売価格設定・在庫評価・業績評価</strong>のすべての土台となる、管理会計の基盤的領域。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.12</div>
+                <h3 class="gl-term">変動費 / 固定費</h3>
+                <div class="gl-en">Variable / Fixed Cost</div>
+                <p class="gl-desc">操業度（売上量・生産量）に応じて<strong>変動する費用と、操業度に関係なく一定額発生する費用</strong>の区分。損益分岐点分析や限界利益の算定に欠かせない基本的なコスト概念。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.13</div>
+                <h3 class="gl-term">直接費 / 間接費</h3>
+                <div class="gl-en">Direct / Indirect Cost</div>
+                <p class="gl-desc">特定の製品・サービスに直接ひもづけられるのが直接費、複数製品に共通して発生するのが間接費。<strong>間接費の配賦設計</strong>が、製品別原価の正確性を大きく左右する。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.14</div>
+                <h3 class="gl-term">標準原価計算</h3>
+                <div class="gl-en">Standard Costing</div>
+                <p class="gl-desc">あらかじめ設定した「あるべき原価」と実際原価の差異を分析する手法。<strong>原価管理・差異の責任所在の明確化</strong>に有効で、製造業の現場管理に長く活用されてきた。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.15</div>
+                <h3 class="gl-term">原価差異分析</h3>
+                <div class="gl-en">Variance Analysis</div>
+                <p class="gl-desc">標準原価と実際原価のズレを<strong>価格差異・数量差異・能率差異</strong>などに分解し、原因を特定する分析。製造現場の改善活動・予実分析の出発点となる。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.16</div>
+                <h3 class="gl-term">ABC（活動基準原価計算）</h3>
+                <div class="gl-en">Activity-Based Costing</div>
+                <p class="gl-desc">間接費を「活動」を介して製品・顧客に配賦する手法。<strong>従来の操業度配賦より精緻</strong>に製品別・顧客別の本当の収益性を把握でき、サービス業や多品種少量生産で威力を発揮する。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.17</div>
+                <h3 class="gl-term">ABM</h3>
+                <div class="gl-en">Activity-Based Management</div>
+                <p class="gl-desc">ABC の情報を<strong>活動の見直しに活用する経営手法</strong>。価値を生まない活動の削減、業務プロセスの再設計を通じて、原価競争力と業績の改善を同時に狙う。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.18</div>
+                <h3 class="gl-term">直接原価計算</h3>
+                <div class="gl-en">Direct Costing</div>
+                <p class="gl-desc">変動費のみを製品原価に集計し、固定費は<strong>期間費用として一括計上</strong>する管理会計用の手法。CVP 分析や貢献利益管理に直結し、意思決定向き原価計算の代表として位置づけられる。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.19</div>
+                <h3 class="gl-term">原価企画</h3>
+                <div class="gl-en">Target Costing</div>
+                <p class="gl-desc">市場価格と目標利益から逆算して<strong>「許容原価」を設定し、設計段階で作り込む</strong>日本発の管理会計手法。製造業の競争力源泉として、開発・購買・生産が一体で取り組む。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.20</div>
+                <h3 class="gl-term">原価改善</h3>
+                <div class="gl-en">Kaizen Costing</div>
+                <p class="gl-desc">量産フェーズに入った後も、<strong>現場の継続的改善活動でコストを下げ続ける</strong>アプローチ。原価企画とセットで運用され、製造業の累積的競争力を支える。</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ============== Category 3: Budgeting & Planning ============== -->
+<section class="section section--alt" id="cat-budget">
+    <div class="container">
+        <div class="gl-cat-head reveal">
+            <span class="cat-num">03</span>
+            <h2 class="cat-title">予算管理と計画</h2>
+            <span class="cat-en">BUDGETING &amp; PLANNING</span>
+        </div>
+
+        <div class="gl-grid reveal">
+            <article class="gl-item">
+                <div class="gl-num">No.21</div>
+                <h3 class="gl-term">予算管理</h3>
+                <div class="gl-en">Budgeting</div>
+                <p class="gl-desc">中長期戦略を踏まえた<strong>1 年単位の数値計画を策定し、運用していく仕組み</strong>。組織のリソース配分と部門コミットメントを明確化し、業績評価の基準としても機能する。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.22</div>
+                <h3 class="gl-term">中期経営計画</h3>
+                <div class="gl-en">Mid-term Business Plan</div>
+                <p class="gl-desc">3〜5 年の<strong>事業戦略と数値計画</strong>を示す経営の青写真。年度予算はこの中計から落とし込み、KPI と投資計画も中計を基準に整合性を取るのが基本。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.23</div>
+                <h3 class="gl-term">予実差異分析</h3>
+                <div class="gl-en">Budget vs. Actual Analysis</div>
+                <p class="gl-desc">予算と実績のズレを<strong>要因分解し、施策につなげる活動</strong>。月次のレビュー会議の中心議題となり、現場の打ち手と経営判断の両方を動かす管理会計の主要アウトプット。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.24</div>
+                <h3 class="gl-term">ローリングフォーキャスト</h3>
+                <div class="gl-en">Rolling Forecast</div>
+                <p class="gl-desc">期初予算に固執せず、<strong>常に直近数四半期先までの見通しを更新し続ける</strong>運用。変動の激しい事業環境に追従するため、欧米先進企業を中心に標準的アプローチとなっている。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.25</div>
+                <h3 class="gl-term">ゼロベース予算</h3>
+                <div class="gl-en">Zero-Based Budgeting</div>
+                <p class="gl-desc">前期実績を出発点とせず、<strong>あらゆる費用項目をゼロから積み上げて妥当性を再検討</strong>する手法。聖域化したコストの抜本見直しに有効で、コスト構造改革プロジェクトでよく採用される。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.26</div>
+                <h3 class="gl-term">活動別予算</h3>
+                <div class="gl-en">Activity-Based Budgeting</div>
+                <p class="gl-desc">予想される<strong>活動量から必要リソースを積み上げて予算を策定する</strong>手法。ABC の発想を予算編成に適用したもので、間接部門のコスト合理化にも有効。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.27</div>
+                <h3 class="gl-term">資金計画</h3>
+                <div class="gl-en">Cash Flow Planning</div>
+                <p class="gl-desc">事業活動・投資・財務に伴う<strong>キャッシュの出入りを予測し、資金繰りを管理する計画</strong>。黒字倒産を防ぐ実務的命綱であり、運転資本管理や借入計画と一体で運用される。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.28</div>
+                <h3 class="gl-term">設備投資計画</h3>
+                <div class="gl-en">Capital Expenditure Plan</div>
+                <p class="gl-desc">中長期の<strong>有形・無形固定資産への投資計画</strong>。NPV・IRR・回収期間などで投資案件を評価し、戦略・収益性・キャッシュフローの観点で承認プロセスを通す。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.29</div>
+                <h3 class="gl-term">シナリオ分析</h3>
+                <div class="gl-en">Scenario Analysis</div>
+                <p class="gl-desc">楽観・基本・悲観など<strong>複数の前提に基づき業績見通しを試算する</strong>手法。不確実な事業環境下で意思決定のロバスト性を高めるツールとして、予算策定や投資判断で活用される。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.30</div>
+                <h3 class="gl-term">感度分析</h3>
+                <div class="gl-en">Sensitivity Analysis</div>
+                <p class="gl-desc">為替・原材料価格・販売数量など<strong>主要変数を変動させたときに業績がどれだけ揺れるかを定量化</strong>する分析。リスク所在の把握と、施策の優先順位付けに有効。</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ============== Category 4: Performance Management ============== -->
+<section class="section" id="cat-performance">
+    <div class="container">
+        <div class="gl-cat-head reveal">
+            <span class="cat-num">04</span>
+            <h2 class="cat-title">業績評価と KPI</h2>
+            <span class="cat-en">PERFORMANCE MANAGEMENT</span>
+        </div>
+
+        <div class="gl-grid reveal">
+            <article class="gl-item">
+                <div class="gl-num">No.31</div>
+                <h3 class="gl-term">KPI</h3>
+                <div class="gl-en">Key Performance Indicator</div>
+                <p class="gl-desc">戦略・目標の達成度を測定する<strong>重要業績評価指標</strong>。財務 KPI のみならず、顧客満足・品質・人材など非財務 KPI も組み合わせ、戦略の実行度を多面的に評価する。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.32</div>
+                <h3 class="gl-term">KGI</h3>
+                <div class="gl-en">Key Goal Indicator</div>
+                <p class="gl-desc">最終的に達成したい<strong>ゴールを表す指標</strong>。KPI が「プロセス・先行指標」とすれば、KGI は「結果・遅行指標」にあたり、両者を組み合わせて戦略の進捗を管理する。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.33</div>
+                <h3 class="gl-term">バランス・スコアカード</h3>
+                <div class="gl-en">Balanced Scorecard (BSC)</div>
+                <p class="gl-desc">財務・顧客・業務プロセス・学習と成長の<strong>4 つの視点</strong>で業績を多面評価するフレームワーク。戦略を KPI に落とし込み、組織を一貫した戦略実行に向かわせる仕組み。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.34</div>
+                <h3 class="gl-term">戦略マップ</h3>
+                <div class="gl-en">Strategy Map</div>
+                <p class="gl-desc">BSC の 4 視点における戦略目標を<strong>因果関係で結び、1 枚絵に整理した図</strong>。「人材育成 → プロセス改善 → 顧客価値 → 財務成果」という流れを可視化し、組織内コミュニケーションを促進する。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.35</div>
+                <h3 class="gl-term">OKR</h3>
+                <div class="gl-en">Objectives and Key Results</div>
+                <p class="gl-desc">野心的な「目標（O）」と、その達成度を測る<strong>定量的な「主要な成果（KR）」</strong>を組み合わせた目標管理手法。短サイクル・透明性の高さを特徴とし、スタートアップを中心に普及。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.36</div>
+                <h3 class="gl-term">ROI</h3>
+                <div class="gl-en">Return on Investment</div>
+                <p class="gl-desc">投じた資金に対してどれだけの<strong>利益が得られたか</strong>を測る指標。投資・キャンペーン・プロジェクトの効率を比較する汎用的なものさしとして、管理会計で広く活用される。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.37</div>
+                <h3 class="gl-term">ROIC</h3>
+                <div class="gl-en">Return on Invested Capital</div>
+                <p class="gl-desc">事業に投下した<strong>有利子負債と株主資本に対するリターン</strong>を測る指標。WACC を上回るかどうかで企業価値創造の有無を判断でき、近年は経営目標として掲げる企業が急増。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.38</div>
+                <h3 class="gl-term">EVA</h3>
+                <div class="gl-en">Economic Value Added</div>
+                <p class="gl-desc">税引後営業利益から<strong>資本コストを差し引いた経済付加価値</strong>。会計上の利益ではなく、資本コストを超える経済的な利益を可視化する指標として、業績評価制度に組み込まれる。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.39</div>
+                <h3 class="gl-term">EBITDA</h3>
+                <div class="gl-en">Earnings Before Interest, Taxes, Depreciation and Amortization</div>
+                <p class="gl-desc">減価償却前・支払利息前・税引前の利益。<strong>会計方針や資本構成に左右されない「稼ぐ力」</strong>を示すため、M&amp;A 評価や国際比較で多用される。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.40</div>
+                <h3 class="gl-term">ベンチマーキング</h3>
+                <div class="gl-en">Benchmarking</div>
+                <p class="gl-desc">自社の業績やプロセスを<strong>競合他社・ベストプラクティスと比較</strong>することで改善点を見出す手法。社内ベンチマーク・業界ベンチマーク・異業種ベンチマークを組み合わせて活用する。</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ============== Category 5: Decision Making ============== -->
+<section class="section section--alt" id="cat-decision">
+    <div class="container">
+        <div class="gl-cat-head reveal">
+            <span class="cat-num">05</span>
+            <h2 class="cat-title">意思決定会計</h2>
+            <span class="cat-en">DECISION MAKING</span>
+        </div>
+
+        <div class="gl-grid reveal">
+            <article class="gl-item">
+                <div class="gl-num">No.41</div>
+                <h3 class="gl-term">CVP 分析</h3>
+                <div class="gl-en">Cost-Volume-Profit Analysis</div>
+                <p class="gl-desc">売上・コスト・利益の関係を<strong>変動費・固定費に分解して分析</strong>する手法。価格戦略・販売数量計画・コスト構造改革など、幅広い意思決定の出発点として活用される。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.42</div>
+                <h3 class="gl-term">損益分岐点</h3>
+                <div class="gl-en">Break-Even Point</div>
+                <p class="gl-desc">売上と総費用が一致し、利益がゼロになる売上水準。<strong>「いくら売れば赤字を抜けるか」</strong>を示す経営の安全水位で、固定費構造と粗利率の改善が損益分岐点を下げる王道アプローチ。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.43</div>
+                <h3 class="gl-term">限界利益</h3>
+                <div class="gl-en">Contribution Margin</div>
+                <p class="gl-desc">売上から変動費を差し引いた、<strong>固定費の回収と利益への貢献分</strong>。製品ミックスの最適化や、注文受託判断などの意思決定で、しばしば営業利益より重要な指標として扱われる。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.44</div>
+                <h3 class="gl-term">埋没原価</h3>
+                <div class="gl-en">Sunk Cost</div>
+                <p class="gl-desc">既に発生し、将来の意思決定によって<strong>変化させられない費用</strong>。意思決定では考慮すべきではないが、心理的に引きずられがちな概念で、撤退判断の典型的バイアス源となる。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.45</div>
+                <h3 class="gl-term">機会原価</h3>
+                <div class="gl-en">Opportunity Cost</div>
+                <p class="gl-desc">ある選択肢を選んだ結果、<strong>諦めた別の選択肢から得られたはずの利益</strong>。簿記上は計上されないが、リソース配分や事業ポートフォリオの意思決定では極めて重要な視点。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.46</div>
+                <h3 class="gl-term">差額原価収益分析</h3>
+                <div class="gl-en">Differential Analysis</div>
+                <p class="gl-desc">複数の代替案について<strong>「変化する収益・費用のみ」を比較</strong>する分析。意思決定に関係しない項目を排除することで、判断のスピードと精度を高める手法。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.47</div>
+                <h3 class="gl-term">NPV / IRR</h3>
+                <div class="gl-en">Net Present Value / Internal Rate of Return</div>
+                <p class="gl-desc">将来キャッシュフローを<strong>現在価値に割り引いて投資の魅力を評価</strong>する代表的手法。NPV は金額、IRR は利回りでプロジェクトを比較し、設備投資・M&amp;A の意思決定で広く用いられる。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.48</div>
+                <h3 class="gl-term">回収期間法</h3>
+                <div class="gl-en">Payback Period</div>
+                <p class="gl-desc">投資額を<strong>何年で回収できるか</strong>を測るシンプルな手法。NPV/IRR より精緻ではないが、流動性とリスク感覚を直感的に把握できるため、現場の意思決定で根強く用いられる。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.49</div>
+                <h3 class="gl-term">プロダクトミックス</h3>
+                <div class="gl-en">Product Mix Decision</div>
+                <p class="gl-desc">複数製品の<strong>生産・販売構成をどう組み合わせると利益が最大化するか</strong>を決める意思決定。制約条件下の限界利益最大化問題として捉え、線形計画法などで最適化される。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.50</div>
+                <h3 class="gl-term">Make or Buy 判断</h3>
+                <div class="gl-en">Make-or-Buy Decision</div>
+                <p class="gl-desc">部品・サービスを<strong>内製するか外部購入するか</strong>を決める意思決定。差額原価・機会原価・戦略的重要性・サプライヤーリスクを総合的に評価し、SCM 戦略とも連動して判断される。</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ============== Outro ============== -->
+<section class="section" id="glossary-outro">
+    <div class="container">
+        <div class="outro-card reveal">
+            <h3>管理会計・業績管理の高度化について、もう少し詳しく相談したい方へ</h3>
+            <p>用語の意味は分かったけれど、「自社の業績管理をどう作り変えるか」「KPI 体系をどう設計するか」は、事業構造ごとに答えが大きく変わります。JG CORPORATION では、コンサルタントとエンジニアが一体となって、管理会計の制度設計から、データ基盤・経営ダッシュボード・S/4HANA 等への実装まで伴走支援します。</p>
+            <div class="btn-row">
+                <a href="services.html#biz-reform" class="btn btn--primary">業務改革サービスを見る</a>
+                <a href="services.html#inquire" class="btn">お問い合わせ</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- ============== Footer ============== -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img class="logo-img" src="images/logo/jg-corporation-banner.png" alt="JG CORPORATION">
+                <p>JG CORPORATION は、コンサルティングとテクノロジー、バイリンガルをコアケイパビリティとした企業です。東京・博多・セブ・シンガポールに拠点を持ちます。</p>
+            </div>
+            <div class="footer-col">
+                <h4>Sitemap</h4>
+                <div class="footer-sitemap">
+                    <div class="footer-sitemap__group">
+                        <p class="footer-sitemap__label">Main Menu</p>
+                        <ol class="footer-sitemap__list">
+                            <li>
+                                <span class="footer-sitemap__num">01</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="about.html">About<span class="footer-sitemap__en">私たちについて</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">02</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="feature.html">Feature<span class="footer-sitemap__en">私たちの強み</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">03</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="services.html">Services<span class="footer-sitemap__en">サービス</span></a>
+                                    <ul class="footer-sitemap__child">
+                                        <li><a href="retechvision.html">Retech Vision <span class="footer-sitemap__en">不動産業向け SaaS</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">04</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="recruitment.html">Recruitment<span class="footer-sitemap__en">採用情報</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">05</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="contribution.html">Contribution<span class="footer-sitemap__en">社会貢献</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">06</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="think.html">Study Room<span class="footer-sitemap__en">用語集</span></a>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="footer-sitemap__group">
+                        <p class="footer-sitemap__label">Study Room — Glossary</p>
+                        <ul class="footer-studyroom">
+                            <li><a href="think.html">AI<span class="footer-studyroom__en">AI</span></a></li>
+                            <li><a href="technology.html">Technology<span class="footer-studyroom__en">Tech</span></a></li>
+                            <li><a href="it.html">IT<span class="footer-studyroom__en">IT / SI</span></a></li>
+                            <li><a href="pm.html">PM<span class="footer-studyroom__en">PM</span></a></li>
+                            <li><a href="consulting.html">Consulting<span class="footer-studyroom__en">Consulting</span></a></li>
+                            <li><a href="solution.html">Solution<span class="footer-studyroom__en">Solution</span></a></li>
+                            <li><a href="scm.html">SCM<span class="footer-studyroom__en">SCM</span></a></li>
+                            <li><a href="management-accounting.html">管理会計<span class="footer-studyroom__en">M.Accounting</span></a></li>
+                            <li><a href="legal-tax-hr.html">法務・税務・労務<span class="footer-studyroom__en">Legal</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>© <span data-year></span> JG Corporation. All rights reserved.</div>
+            <div>
+                <a href="privacypolicy.html">個人情報保護方針</a> ・
+                <a href="privacypolicy.html#securitypolicy">情報セキュリティに関する方針</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="JG CORPORATION の特徴｜バイリンガルメンバーを中心に構成しており、グローバルプロジェクトのニーズに対応します。フィリピンセブ、博多に開発拠点を持ち価格競争力のあるシステム開発を提供します。">
+    <title>特徴 ｜ JG CORPORATION</title>
+    <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+    /* ============== Feature Hero — Simple & Editorial (v4) ============== */
+    #feature-hero {
+        position: relative;
+        min-height: 78vh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        padding: 140px 0 110px;
+    }
+    /* Photo background — highly visible (minimal dimming) */
+    #feature-hero .page-banner-bg {
+        position: absolute; inset: 0;
+        background-size: cover;
+        background-position: center;
+        z-index: 0;
+        filter: contrast(1.02) brightness(0.95) saturate(1.05) !important;
+        transform: none !important;
+        animation: none !important;
+    }
+    /* Soften the global wireframe overlay on this hero */
+    #feature-hero.page-banner::before {
+        opacity: 0.05;
+    }
+    /* Replace the heavy global gradient overlay with a very light one */
+    #feature-hero.page-banner::after {
+        background: linear-gradient(180deg, rgba(8, 8, 12, 0.22) 0%, rgba(8, 8, 12, 0.30) 100%);
+    }
+    /* Make sure content is on top of every overlay */
+    #feature-hero .container { position: relative; z-index: 10; }
+
+    /* Eyebrow */
+    .fh-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        font-family: var(--f-en, 'Montserrat', sans-serif);
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.34em;
+        color: rgba(255, 255, 255, 0.7);
+        text-transform: uppercase;
+        margin-bottom: 48px;
+    }
+    .fh-eyebrow::before {
+        content: "";
+        display: inline-block;
+        width: 40px; height: 1px;
+        background: var(--c-accent, #e6007e);
+    }
+
+    /* Statement list */
+    .fh-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;          /* reset default <ul> padding-inline-start */
+    }
+    .fh-list__item {
+        position: relative;
+        padding: 28px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.20);
+    }
+    .fh-list__item:last-child {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+    }
+    .fh-list__text {
+        font-family: var(--f-jp, 'Noto Sans JP', sans-serif);
+        font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+        font-weight: 700;
+        line-height: 1.5;
+        color: #fff;
+        letter-spacing: 0.02em;
+        margin: 0;
+        white-space: nowrap;
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7), 0 0 24px rgba(0, 0, 0, 0.5);
+    }
+    .fh-list__text .accent {
+        color: var(--c-accent, #e6007e);
+        font-weight: 800;
+    }
+    /* Keyword emphasis: pink + larger */
+    .fh-list__text .fh-em {
+        color: var(--c-accent, #e6007e);
+        font-size: 1.25em;
+        font-weight: 800;
+        letter-spacing: 0.03em;
+    }
+
+    /* × divider between the two messages — left-aligned to match items */
+    .fh-divider {
+        display: block;
+        padding: 18px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.20);
+        margin: 0;
+    }
+    .fh-divider__mark {
+        font-family: var(--f-en, 'Montserrat', sans-serif);
+        font-size: clamp(4rem, 7vw, 7rem);
+        font-weight: 300;
+        line-height: 1;
+        color: var(--c-accent, #e6007e);
+        text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Conclusion line — left-aligned to match everything above */
+    .fh-conclusion {
+        margin-top: 48px;
+        text-align: left;
+        padding: 0;
+    }
+    .fh-conclusion__text {
+        position: relative;
+        display: inline-block;
+        font-family: var(--f-jp, 'Noto Sans JP', sans-serif);
+        font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+        font-weight: 500;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.85);
+        letter-spacing: 0.12em;
+        margin: 0;
+        padding-bottom: 14px;
+    }
+    .fh-conclusion__text::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 40px;
+        height: 2px;
+        background: var(--c-accent, #e6007e);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+        #feature-hero { min-height: auto; padding: 120px 0 90px; }
+        .fh-eyebrow { margin-bottom: 36px; }
+        .fh-list__item { padding: 24px 0; }
+        .fh-list__text { font-size: 1.55rem; }
+        .fh-divider__mark { font-size: 4.5rem; }
+        .fh-conclusion { margin-top: 40px; }
+    }
+    @media (max-width: 720px) {
+        .fh-list__text { white-space: normal; line-height: 1.55; font-size: 1.35rem; }
+    }
+    @media (max-width: 560px) {
+        .fh-eyebrow { font-size: 0.72rem; letter-spacing: 0.28em; }
+        .fh-list__text { font-size: 1.15rem; }
+        .fh-list__item { padding: 20px 0; }
+        .fh-divider { padding: 12px 0; }
+        .fh-divider__mark { font-size: 3.2rem; }
+    }
+    </style>
+</head>
+<body id="page-feature">
+
+<header class="site-header">
+    <div class="nav-inner">
+        <a href="index.html" class="brand" aria-label="JG CORPORATION">
+            <img class="logo-img" src="images/logo/jg-corporation-banner.png" alt="JG CORPORATION">
+        </a>
+        <button class="nav-toggle" aria-label="メニュー"><span></span><span></span><span></span></button>
+        <ul class="nav-main">
+            <li><a href="about.html">About</a></li>
+            <li><a href="feature.html" class="is-active">Feature</a></li>
+            <li class="has-dropdown">
+                <button type="button" class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Services<span class="nav-dd-caret" aria-hidden="true"></span></button>
+                <ul class="nav-dd-menu" role="menu">
+                    <li><a href="services.html">Services <span class="nav-dd-sub">サービス一覧</span></a></li>
+                    <li><a href="retechvision.html">Retech Vision <span class="nav-dd-sub">不動産業向け SaaS</span></a></li>
+                </ul>
+            </li>
+            <li><a href="recruitment.html">Recruitment</a></li>
+            <li><a href="contribution.html">Contribution</a></li>
+            <li class="has-dropdown">
+                <button type="button" class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Study Room<span class="nav-dd-caret" aria-hidden="true"></span></button>
+                <ul class="nav-dd-menu" role="menu">
+                    <li><a href="think.html">AI <span class="nav-dd-sub">AI Glossary</span></a></li>
+                    <li><a href="technology.html">Technology <span class="nav-dd-sub">Technology Glossary</span></a></li>
+                    <li><a href="it.html">IT <span class="nav-dd-sub">IT / SI Glossary</span></a></li>
+                    <li><a href="pm.html">PM <span class="nav-dd-sub">Project Management</span></a></li>
+                    <li><a href="consulting.html">Consulting <span class="nav-dd-sub">Consulting Glossary</span></a></li>
+                    <li><a href="solution.html">Solution <span class="nav-dd-sub">Solution Glossary</span></a></li>
+                    <li><a href="scm.html">SCM <span class="nav-dd-sub">SCM Glossary</span></a></li>
+                    <li><a href="management-accounting.html">管理会計 <span class="nav-dd-sub">Management Accounting</span></a></li>
+                    <li><a href="legal-tax-hr.html">法務・税務・労務 <span class="nav-dd-sub">Legal / Tax / HR</span></a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+
+<main class="page-wrapper">
+
+<section class="page-banner" id="feature-hero">
+    <div class="page-banner-bg" style="background-image: url('images/hero/feature.jpg');"></div>
+    <div class="container">
+        <div class="reveal">
+            <div class="fh-eyebrow">Our Value Proposition</div>
+
+            <ul class="fh-list" role="list">
+                <li class="fh-list__item">
+                    <p class="fh-list__text"><span class="fh-em">業務改革</span>と<span class="fh-em">基幹システム構築</span>における高い専門性</p>
+                </li>
+                <li class="fh-divider" aria-hidden="true">
+                    <span class="fh-divider__mark">×</span>
+                </li>
+                <li class="fh-list__item">
+                    <p class="fh-list__text"><span class="fh-em">AI</span>＆<span class="fh-em">オフショアミックス</span>のローコストシステム開発</p>
+                </li>
+            </ul>
+
+            <div class="fh-conclusion">
+                <p class="fh-conclusion__text">高品質と低コストの両立</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features intro -->
+<section class="section">
+    <div class="container">
+        <div class="section-head reveal" style="text-align:center;">
+            <div class="eyebrow">Our Strengths</div>
+            <h2>JG CORPORATION の<br><span class="accent">4つの特徴</span></h2>
+            <p class="sub" style="margin-left:auto; margin-right:auto;">設立以来培ってきた業務改革ノウハウと、先端技術への深い知見。少数精鋭ならではのコミットメントと、日本 ✕ セブの両拠点を活かしたコスト最適化。当社の競争力の源泉をご紹介します。</p>
+        </div>
+    </div>
+</section>
+
+<!-- Feature 01: 業務オペレーション改革と基幹システム構築 -->
+<section class="feature-block">
+    <div class="container">
+        <div class="feature-grid reveal">
+            <div class="feature-text">
+                <span class="feature-num">01 / Operations &amp; Core Systems</span>
+                <h2><span class="accent">業務オペレーション改革</span>と<br><span class="accent">基幹システム構築</span>における<br>専門性</h2>
+                <p class="feature-sub">企業生産性向上のための<br>抜本的改革と様々な打ち手</p>
+                <p>受発注、申込審査、経理処理など、完全なシステム化が進まず、EXCEL 等を用いた管理とシステム入力が複雑に入り混じった煩雑な業務を抱えていませんか？</p>
+                <p>当社では、複雑化した業務を紐解きシンプルなオペレーションモデルを描く、業務に最適化されたシステムを構築する、AI-OCR や AI エージェントといった便利な技術を組み合わせ個別処理を効率化する、といったアプローチにより業務の自動化や高度化を実現します。</p>
+                <p>当社在籍メンバーの多くは製造業や不動産業で経験を積んできたメンバーで構成されており、設立以来この業務オペレーション改革にフォーカスしたサービス提供を行ってきました。蓄積してきたノウハウによる専門性の高いサービスを提供しております。</p>
+            </div>
+            <div class="feature-visual">
+                <div class="visual-frame">
+                    <span class="visual-tag"><span class="dot"></span>Operations × Core Systems</span>
+                    <img src="images/feature/operations.jpg" alt="業務オペレーション改革と基幹システム構築を表すオフィスシーンのイラスト">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Feature 02: 製造業における専門性 -->
+<section class="feature-block feature-block--alt">
+    <div class="container">
+        <div class="feature-grid is-reverse reveal">
+            <div class="feature-text">
+                <span class="feature-num">02 / Manufacturing Expertise</span>
+                <h2><span class="accent">製造業</span>における<br>専門性</h2>
+                <p class="feature-sub">経験を積んできた業界に<br>フォーカスしたサービスの提供</p>
+                <p>当社メンバーの多くは大手製造業のグローバルプロジェクトで経験を積んできており、設計・調達・生産・販売・アフターサービスといったバリューチェーン全体にわたるオペレーションと、それを支える基幹システムに精通しています。</p>
+                <p>サプライチェーン改革、ERP 導入、PLM、生産管理、IoT を活用したスマートファクトリーの実現まで、製造業ならではの複雑な業務要件を理解した上で、最適なソリューションをご提供します。</p>
+            </div>
+            <div class="feature-visual">
+                <div class="visual-frame">
+                    <span class="visual-tag"><span class="dot"></span>Manufacturing Expertise</span>
+                    <img src="images/feature/manufacturing.jpg" alt="製造業における専門性を表す工場シーンのイラスト">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Feature 03: 先端技術 / AI への精通 -->
+<section class="feature-block">
+    <div class="container">
+        <div class="feature-grid reveal">
+            <div class="feature-text">
+                <span class="feature-num">03 / Advanced Tech &amp; AI</span>
+                <h2><span class="accent">先端技術</span>／<span class="accent">AI</span> への<br>精通</h2>
+                <p class="feature-sub">先端技術への投資と<br>AI 領域への早期からの取り組み</p>
+                <p>当社は最新技術の研究をはじめ、実に多くのプロジェクトに携わってきたメンバーで構成されています。基幹システム、決済システム、IoT プラットフォーム、検索エンジン等、大量トランザクションが発生し、堅牢・ハイパフォーマンス・高セキュアが求められるシステムを支える幅広い先端技術を提供することが可能です。</p>
+                <p>また、当社では AI 領域における研究に早期から着手してきました。フィジビリティの高い AI 技術についても提供することが可能です。</p>
+            </div>
+            <div class="feature-visual">
+                <div class="visual-frame">
+                    <span class="visual-tag"><span class="dot"></span>Advanced Tech &amp; AI</span>
+                    <img src="images/feature/ai-tech.jpg" alt="先端技術とAIへの精通を表す研究ラボのイラスト">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Feature 04: 成果へのコミットとコストの最適化 -->
+<section class="feature-block feature-block--alt">
+    <div class="container">
+        <div class="feature-grid is-reverse reveal">
+            <div class="feature-text">
+                <span class="feature-num">04 / Commitment &amp; Cost</span>
+                <h2>成果への<span class="accent">コミット</span>と<br><span class="accent">コスト</span>の最適化</h2>
+                <p class="feature-sub">高品質・低価格を実現する<br>プロジェクト遂行サービス</p>
+                <p>当社のコンサルタントは、緻密な計画立案、論理的な問題解決、そしてゴールに向けてやりきる精神を持ち合わせた少数精鋭で構成されており、お客様と一体となりプロジェクトを力強く牽引します。</p>
+                <p>また、エンジニアリングにおいては、日本側の専門性の高いエンジニア集団とフィリピンオフショアメンバーが共同して開発を実施します。さらに、AI を用いた開発手法を確立しており、高い生産性でのシステム開発を提供します。</p>
+                <p>日々考え改善を繰り返してきた高品質で低価格なプロジェクト遂行サービスを提供いたします。</p>
+            </div>
+            <div class="feature-visual">
+                <div class="visual-frame">
+                    <span class="visual-tag"><span class="dot"></span>Commitment &amp; Cost</span>
+                    <img src="images/feature/collaboration.jpg" alt="日本チームとフィリピンチームが連携してプロジェクトを進めるイラスト">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img class="logo-img" src="images/logo/jg-corporation-banner.png" alt="JG CORPORATION">
+                <p>JG CORPORATION は、コンサルティングとテクノロジー、バイリンガルをコアケイパビリティとした企業です。東京・博多・セブ・シンガポールに拠点を持ちます。</p>
+            </div>
+            <div class="footer-col">
+                <h4>Sitemap</h4>
+                <div class="footer-sitemap">
+                    <div class="footer-sitemap__group">
+                        <p class="footer-sitemap__label">Main Menu</p>
+                        <ol class="footer-sitemap__list">
+                            <li>
+                                <span class="footer-sitemap__num">01</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="about.html">About<span class="footer-sitemap__en">私たちについて</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">02</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="feature.html">Feature<span class="footer-sitemap__en">私たちの強み</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">03</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="services.html">Services<span class="footer-sitemap__en">サービス</span></a>
+                                    <ul class="footer-sitemap__child">
+                                        <li><a href="retechvision.html">Retech Vision <span class="footer-sitemap__en">不動産業向け SaaS</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">04</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="recruitment.html">Recruitment<span class="footer-sitemap__en">採用情報</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">05</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="contribution.html">Contribution<span class="footer-sitemap__en">社会貢献</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">06</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="think.html">Study Room<span class="footer-sitemap__en">用語集</span></a>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="footer-sitemap__group">
+                        <p class="footer-sitemap__label">Study Room — Glossary</p>
+                        <ul class="footer-studyroom">
+                            <li><a href="think.html">AI<span class="footer-studyroom__en">AI</span></a></li>
+                            <li><a href="technology.html">Technology<span class="footer-studyroom__en">Tech</span></a></li>
+                            <li><a href="it.html">IT<span class="footer-studyroom__en">IT / SI</span></a></li>
+                            <li><a href="pm.html">PM<span class="footer-studyroom__en">PM</span></a></li>
+                            <li><a href="consulting.html">Consulting<span class="footer-studyroom__en">Consulting</span></a></li>
+                            <li><a href="solution.html">Solution<span class="footer-studyroom__en">Solution</span></a></li>
+                            <li><a href="scm.html">SCM<span class="footer-studyroom__en">SCM</span></a></li>
+                            <li><a href="management-accounting.html">管理会計<span class="footer-studyroom__en">M.Accounting</span></a></li>
+                            <li><a href="legal-tax-hr.html">法務・税務・労務<span class="footer-studyroom__en">Legal</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>© <span data-year></span> JG Corporation. All rights reserved.</div>
+            <div>
+                <a href="privacypolicy.html">個人情報保護方針</a> ・
+                <a href="privacypolicy.html#securitypolicy">情報セキュリティに関する方針</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

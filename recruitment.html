@@ -52,9 +52,9 @@
             border-bottom: 2px solid var(--c-accent);
         }
         .model-card__body {
-            font-size: 12.5px;
+            font-size: 14px;          /* 12.5px → 14px */
             line-height: 1.85;
-            color: rgba(255, 255, 255, 0.85);
+            color: var(--c-text-mute);  /* グレーに統一 */
             margin: 0;
         }
         @media (max-width: 1000px) {
@@ -276,8 +276,8 @@
             align-items: stretch;
         }
         .career-grid--mid {
-            grid-template-columns: repeat(6, minmax(0, 1fr));
-            max-width: calc(100% - 280px); /* align under top 3 tracks */
+            /* 6 \u30ab\u30e9\u30e0\u306f\u4e0a3\u30c8\u30e9\u30c3\u30af\u306b\u91cd\u306d\u3001\u6700\u53f3\u306b role-column \u540c\u5e45\u306e\u5217\u3092\u8ffd\u52a0 */
+            grid-template-columns: repeat(6, minmax(0, 1fr)) minmax(220px, 260px);
             margin: 0;
             gap: 16px;
         }
@@ -285,9 +285,10 @@
         .career-grid--mid .career-track--mid:nth-child(1) { grid-column: 1 / span 3; }
         .career-grid--mid .career-track--mid:nth-child(2) { grid-column: 4 / span 3; }
         .career-grid--bottom {
-            grid-template-columns: 1fr;
-            max-width: calc(100% - 280px);
+            /* \u5de6\u306f3\u30c8\u30e9\u30c3\u30af\u5e45\u3001\u53f3\u306f role-column \u540c\u5e45 */
+            grid-template-columns: minmax(0, 1fr) minmax(220px, 260px);
             margin: 0;
+            gap: 16px;
         }
 
         .career-track { display: flex; flex-direction: column; }
@@ -374,11 +375,11 @@
             font-weight: 600;
         }
 
-        /* Role column on the right */
+        /* Role column on the right (upper half: lv4 / lv3) */
         .role-column {
             display: grid;
-            grid-template-rows: auto repeat(4, 1fr);
-            gap: 4px;
+            grid-template-rows: auto 1fr 1fr;
+            gap: 8px;
             padding-top: 0;
         }
         .role-head {
@@ -403,6 +404,10 @@
             line-height: 1.6;
             color: var(--c-text);
         }
+        /* \u4e2d\u6bb5\u30fb\u4e0b\u6bb5\u306b\u914d\u7f6e\u3055\u308c\u308b\u5358\u72ec\u306e role-item */
+        .role-item--row {
+            min-height: 100%;
+        }
 
         /* Connector arrows region */
         .career-connector {
@@ -412,8 +417,7 @@
             margin: 12px 0;
         }
         .career-connector--mid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            max-width: calc(100% - 280px);
+            grid-template-columns: repeat(2, minmax(0, 1fr)) minmax(220px, 260px);
             gap: 16px;
         }
         .up-arrow {
@@ -576,7 +580,7 @@
             margin-bottom: 16px;
         }
         .growth-card__sub {
-            font-size: 13px;
+            font-size: 14px;          /* 13px → 14px */
             color: var(--c-text-mute);
             margin-bottom: 6px;
         }
@@ -590,7 +594,7 @@
         .growth-card__value--magenta { color: var(--c-accent); }
         .growth-card__note {
             margin-top: 12px;
-            font-size: 12px;
+            font-size: 14px;          /* 12px → 14px */
             color: var(--c-text-mute);
         }
 
@@ -654,7 +658,7 @@
         }
         .org-stage__phase {
             font-family: var(--f-sans);
-            font-size: 11px;
+            font-size: 13px;          /* 11px → 13px */
             font-weight: 800;
             letter-spacing: .3em;
             color: var(--c-text-soft);
@@ -665,7 +669,7 @@
         .org-stage--vision  .org-stage__phase { color: #ff5db1; }
         .org-stage__scale {
             font-family: var(--f-jp);
-            font-size: 13px;
+            font-size: 14px;          /* 13px → 14px */
             font-weight: 700;
             color: #fff;
             margin-bottom: 14px;
@@ -696,16 +700,17 @@
             display: flex;
             flex-direction: column;
             gap: 6px;
-            font-size: 12px;
-            color: var(--c-text-mute);
-            line-height: 1.5;
+            font-size: 14px;          /* 統一: 14px */
+            color: var(--c-text-mute); /* 統一: グレー */
+            line-height: 1.7;
             margin-top: auto;
         }
+        /* 強調無しに統一（色・太さを通常テキストと同じに） */
         .org-stage__legend strong {
-            color: var(--c-text);
-            font-weight: 700;
+            color: inherit;
+            font-weight: 400;
         }
-        .org-stage--vision .org-stage__legend strong { color: #ff5db1; }
+        .org-stage--vision .org-stage__legend strong { color: inherit; }
 
         /* Arrows between stages */
         .org-arrow {
@@ -744,7 +749,7 @@
         .org-expand__callout .org-expand__title .accent { color: var(--c-accent); }
         .org-expand__callout p {
             margin: 0;
-            font-size: 14px;
+            font-size: 14px;          /* 14px を明示 (200億円規模タイトル下の説明文) */
             color: var(--c-text);
             line-height: 1.95;
         }
@@ -811,7 +816,7 @@
         }
         .rookie-track__title {
             font-family: var(--f-jp);
-            font-size: 15px;
+            font-size: 16px;          /* 15px → 16px に統一 */
             font-weight: 700;
             color: var(--c-text);
             letter-spacing: .03em;
@@ -896,7 +901,7 @@
         }
         .opportunity-card__head h3 {
             margin: 0;
-            font-size: 16px;
+            font-size: 18px;          /* 16px → 18px */
             font-weight: 700;
             line-height: 1.45;
             letter-spacing: .02em;
@@ -913,7 +918,7 @@
         }
         .opportunity-card__body p {
             margin: 0;
-            font-size: 14px;
+            font-size: 16px;          /* 14px → 16px */
             line-height: 1.95;
             color: var(--c-text);
         }
@@ -992,7 +997,7 @@
         }
         .knowledge-desc {
             margin: 0;
-            font-size: 12px;
+            font-size: 14px;          /* 12px → 14px */
             line-height: 1.6;
             color: var(--c-text-mute);
             max-width: 180px;
@@ -1204,6 +1209,33 @@
         }
         #page-recruitment .page-banner::before {
             opacity: .08;
+        }
+
+        /* ====== 各セクション導入文の共通化 (Career Step / Career Model / Evaluation) ======
+           他ページ (.mission-body p / .page-banner .lead) と同じ 16px / 白 に統一 */
+        #career-step .section-head .sub,
+        #career-model .section-head .sub,
+        #evaluation .section-head .sub {
+            font-size: 16px;
+            color: #ffffff;
+            line-height: 2;
+        }
+
+        /* ====== 待遇1 (Compensation) / 待遇2 (Benefits) のカード文字サイズ統一 ======
+           - h3 (タイトル): 18px (.card のデフォルトと同じ、明示)
+           - p  (説明文)  : 16px (デフォルト 14px → 16px に拡大)
+           - benefit-list li (箇条書き) : 16px (14px → 16px) */
+        #compensation .card h3,
+        #benefits .card h3 {
+            font-size: 18px;
+        }
+        #compensation .card p,
+        #benefits .card p {
+            font-size: 16px;
+        }
+        #benefits .benefit-list li {
+            font-size: 16px;
+            line-height: 1.8;
         }
     </style>
 </head>
@@ -1469,9 +1501,7 @@
             <!-- Call-out: who we're recruiting for -->
             <div class="org-expand__callout">
                 <h3 class="org-expand__title">200 億円規模の組織には、<span class="accent">数多くのリーダーポジション</span>が必要です。</h3>
-                <p>事業規模の拡大は、そのまま「組織の拡大」と「リーダーポジションの増加」を意味します。今回の採用では、これから生まれていく数多くのリーダーポジションを担っていただける方を求めています。</p>
-                <p>組織が拡大していく過程では、プロジェクトを率いる<strong>マネジャー</strong>、サービスを牽引する<strong>サービスリード</strong>、特定領域を究める<strong>エキスパート</strong>、拠点・事業を担う<strong>事業責任者</strong>──といった、<strong>多様で多数のリーダーポジション</strong>が次々と生まれていきます。</p>
-                <p>今回の採用は、その<strong>「これから生まれるポジション」を担っていただける方</strong>を募集するものです。経験を活かし、組織の中核として共に成長していく意欲をお持ちの方からのご応募をお待ちしています。</p>
+                <p>事業規模の拡大は、そのまま「組織の拡大」と「リーダーポジションの増加」を意味します。今回の採用では、これから生まれていく数多くのリーダーポジションを担っていただける方を求めています。組織が拡大していく過程では、プロジェクトを率いる<strong>マネジャー</strong>、サービスを牽引する<strong>サービスリード</strong>、特定領域を究める<strong>エキスパート</strong>、拠点・事業を担う<strong>事業責任者</strong>──といった、<strong>多様で多数のリーダーポジション</strong>が次々と生まれていきます。今回の採用は、その<strong>「これから生まれるポジション」を担っていただける方</strong>を募集するものです。経験を活かし、組織の中核として共に成長していく意欲をお持ちの方からのご応募をお待ちしています。</p>
             </div>
         </div>
     </div>
@@ -1582,13 +1612,11 @@
                     </div>
                 </div>
 
-                <!-- Right: Role column (spans 2 rows of vertical region) -->
+                <!-- Right: Role column (upper half — lv4 & lv3 only) -->
                 <div class="role-column" aria-label="役割">
                     <div class="role-head">役　　割</div>
                     <div class="role-item role-item--lv4"><p>プロジェクトのみではなく、特定サービスやソリューションをもリードする。</p></div>
                     <div class="role-item role-item--lv3"><p>プロジェクトを組成しリードする。プロジェクトにおける現場責任者。</p></div>
-                    <div class="role-item role-item--lv2"><p>メンバーとしてプロジェクトに配属。マネジャーの指示のもと、特定領域の担当として業務を推進。</p></div>
-                    <div class="role-item role-item--lv1"><p>先輩メンバーの指示のもと、OJT 形式で様々な業務に従事。</p></div>
                 </div>
             </div>
 
@@ -1597,9 +1625,10 @@
                 <span class="up-arrow"></span>
                 <span class="up-arrow"></span>
                 <span class="up-arrow up-arrow--single"></span>
+                <span></span>
             </div>
 
-            <!-- Middle: Consultant / Engineer career -->
+            <!-- Middle: Consultant / Engineer career + lv2 role description -->
             <div class="career-grid career-grid--mid">
                 <div class="career-track career-track--mid">
                     <div class="track-box track-box--mid">
@@ -1619,19 +1648,24 @@
                         <div class="track-label">エンジニアキャリア</div>
                     </div>
                 </div>
+                <!-- Role description aligned with consultant / engineer row -->
+                <div class="role-item role-item--lv2 role-item--row"><p>メンバーとしてプロジェクトに配属。マネジャーの指示のもと、特定領域の担当として業務を推進。</p></div>
             </div>
 
             <!-- Connector down to entry -->
             <div class="career-connector career-connector--mid" aria-hidden="true">
                 <span class="up-arrow"></span>
                 <span class="up-arrow"></span>
+                <span></span>
             </div>
 
-            <!-- Bottom: Entry positions -->
+            <!-- Bottom: Entry positions + lv1 role description -->
             <div class="career-grid career-grid--bottom">
                 <div class="rank-list rank-list--entry">
                     <div class="rank-list__item rank-list__item--wide">アソシエイト（プログラマ）</div>
                 </div>
+                <!-- Role description aligned with associate row -->
+                <div class="role-item role-item--lv1 role-item--row"><p>先輩メンバーの指示のもと、OJT 形式で様々な業務に従事。</p></div>
             </div>
 
             <!-- Caption -->
@@ -1816,7 +1850,7 @@
 </section>
 
 <!-- Evaluation -->
-<section class="section section--alt">
+<section class="section section--alt" id="evaluation">
     <div class="container">
         <div class="section-head reveal">
             <div class="eyebrow">Evaluation System / Training</div>
@@ -1852,18 +1886,17 @@
         </div>
 
         <!-- Salary table + bonus image -->
-        <div class="reveal" style="display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 24px; align-items: center;">
+        <div class="reveal" style="display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 24px; align-items: start;">
 
             <!-- Salary example -->
             <div>
-                <h4 style="font-size: 14px; letter-spacing: .05em; color: var(--c-text); margin: 0 0 8px; border-bottom: 1px solid var(--c-line); padding-bottom: 6px;">給与例</h4>
-                <p style="font-size: 12px; color: var(--c-text-mute); margin: 0 0 16px;">記載はあくまで目安であり実際にはパフォーマンス等により異なる場合があります。下記記載は決算賞与を含みません。</p>
+                <h4 style="font-size: 14px; letter-spacing: .05em; color: var(--c-text); margin: 0 0 16px; border-bottom: 1px solid var(--c-line); padding-bottom: 6px;">給与例と決算賞与支給イメージ</h4>
 
                 <table class="salary-table" style="width: 100%; border-collapse: separate; border-spacing: 0 6px;">
                     <tbody>
                         <tr>
                             <td style="background: var(--c-accent); color: #fff; padding: 10px 14px; font-weight: 700; text-align: center; width: 40%;">新卒</td>
-                            <td style="background: rgba(230, 0, 126, 0.18); color: #fff; padding: 10px 14px; text-align: center; border: 1px solid rgba(230, 0, 126, 0.45);">400 - 480 万円　<span style="color: var(--c-accent-2);">※</span></td>
+                            <td style="background: rgba(230, 0, 126, 0.18); color: #fff; padding: 10px 14px; text-align: center; border: 1px solid rgba(230, 0, 126, 0.45);">400 - 480 万円</td>
                         </tr>
                         <tr>
                             <td style="background: var(--c-accent); color: #fff; padding: 10px 14px; font-weight: 700; text-align: center;">C / SC</td>
@@ -1876,18 +1909,17 @@
                     </tbody>
                 </table>
 
-                <p style="font-size: 12px; color: var(--c-text-mute); margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--c-line);">
-                    <span style="color: var(--c-accent-2);">※</span> 開発経験のような即戦力となる特別なスキルを保有する方（情報系学部卒含む）は、条件により 450 - 600 万円となります。またスカウト等がある方はスカウト時の条件が優先されます。
+                <p style="font-size: 12px; color: var(--c-text-mute); margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--c-line); line-height: 1.8;">
+                    <span style="color: var(--c-accent-2);">※1</span> 記載はあくまで目安です。実際にはパフォーマンス等により左右されます。<br>
+                    <span style="color: var(--c-accent-2);">※2</span> 新卒採用について、開発経験のような即戦力となる特別なスキルを保有する方（情報系学部卒含む）は、条件により 450 - 600 万円となります。またスカウト等がある方はスカウト時の条件が優先されます。
                 </p>
             </div>
 
             <!-- Plus sign -->
-            <div style="font-family: var(--f-sans); font-size: 56px; font-weight: 800; color: var(--c-accent); text-align: center; line-height: 1;">+</div>
+            <div style="font-family: var(--f-sans); font-size: 56px; font-weight: 800; color: var(--c-accent); text-align: center; line-height: 1; align-self: center; margin-top: 60px;">+</div>
 
             <!-- Bonus image -->
-            <div>
-                <h4 style="font-size: 14px; letter-spacing: .05em; color: var(--c-text); margin: 0 0 16px; border-bottom: 1px solid var(--c-line); padding-bottom: 6px;">賞与支給イメージ</h4>
-
+            <div style="margin-top: 50px;">
                 <div style="position: relative; padding: 32px 12px 14px;">
                     <!-- Goal achieved label -->
                     <div style="position: absolute; top: 0; right: 8px; padding: 4px 12px; border: 1px solid #fff; color: #fff; font-size: 11px; letter-spacing: .15em; font-family: var(--f-sans); font-weight: 600;">目標達成</div>
@@ -1972,7 +2004,7 @@
             <!-- 長く働ける安心の制度 -->
             <article class="card" style="display: flex; flex-direction: column;">
                 <h3><span style="color: var(--c-accent); margin-right: 8px;">◆</span>長く働ける安心の制度</h3>
-                <p>老後まで見据えた長期的な就業が可能です。</p>
+                <p>充実した制度などにより、業界標準より低い離職率を誇ります。老後まで見据えた長期的な就業が可能です。</p>
                 <ul class="benefit-list">
                     <li>低い離職率 <strong style="color: var(--c-accent-2);">5%</strong>（働きやすさの証明）</li>
                     <li>制度充実（関東 IT ソフトウェア健康保険組合、確定拠出年金制度など）</li>

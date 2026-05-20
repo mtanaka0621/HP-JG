@@ -136,10 +136,10 @@
             line-height: 1.35;
             margin: 0 0 6px;
         }
-        /* サブタイトル（日本語） */
+        /* サブタイトル（日本語） — 16px に統一 */
         .service-grid .service-card__sub {
             font-family: var(--f-jp);
-            font-size: 13px;
+            font-size: 16px;
             color: var(--c-accent-2, #a8c5e8);
             margin: 0 0 16px;
             letter-spacing: .04em;
@@ -158,10 +158,10 @@
             width: 56px;
             background: #88b4e0;
         }
-        /* 説明文 */
+        /* 説明文 — 16px に統一 */
         .service-grid .service-card__desc {
             font-family: var(--f-jp);
-            font-size: 13px;
+            font-size: 16px;
             line-height: 1.85;
             color: var(--c-text-mute);
             margin: 0 0 24px;
@@ -201,14 +201,15 @@
         }
 
         /* ============== Service Menu sections (業務改革 / AI活用) ============== */
+        /* 導入文 — 他ページの .mission-body p / .page-banner .lead と同じ 16px / 白 */
         .svc-menu .svc-menu__intro {
             max-width: none;
             margin: 0 0 28px;
             text-align: left;
             font-family: var(--f-jp);
-            font-size: 14px;
+            font-size: 16px;          /* 14px → 16px に統一 */
             line-height: 2.0;
-            color: var(--c-text);
+            color: #ffffff;           /* 白に統一 */
         }
         .svc-menu .svc-menu__label {
             font-family: var(--f-jp);
@@ -256,7 +257,7 @@
         }
         .svc-menu .svc-card__title {
             font-family: var(--f-jp);
-            font-size: 16px;
+            font-size: 18px;          /* 16px → 18px */
             font-weight: 700;
             color: #fff;
             text-align: left;
@@ -266,7 +267,7 @@
         }
         .svc-menu .svc-card__desc {
             font-family: var(--f-jp);
-            font-size: 13px;
+            font-size: 16px;          /* 13px → 16px */
             line-height: 1.8;
             color: var(--c-text-mute);
             text-align: left;
@@ -279,18 +280,19 @@
             border-top: 1px dashed rgba(255,255,255,0.12);
             text-align: left;
             font-family: var(--f-jp);
-            font-size: 12px;
+            font-size: 16px;          /* 12px → 16px (期待効果内容のデフォルト) */
             line-height: 1.6;
             color: var(--c-text-mute);
         }
         .svc-menu .svc-card__effect .label {
             display: block;
-            font-size: 11px;
+            font-size: 14px;          /* 11px → 14px (「期待効果」ラベル) */
             letter-spacing: .15em;
             color: var(--c-text-soft);
             margin-bottom: 4px;
         }
         .svc-menu .svc-card__effect .value {
+            font-size: 16px;          /* 期待効果内容 */
             color: var(--c-accent-2);
             font-weight: 600;
         }
@@ -309,7 +311,7 @@
             .svc-menu .svc-grid--5,
             .svc-menu .svc-grid--4 { grid-template-columns: repeat(2, 1fr); }
             .svc-menu .svc-grid--3 { grid-template-columns: repeat(2, 1fr); }
-            .svc-menu .svc-menu__intro { font-size: 15px; line-height: 1.9; }
+            .svc-menu .svc-menu__intro { font-size: 16px; line-height: 1.9; }
         }
         @media (max-width: 560px) {
             .svc-menu .svc-grid--5,
@@ -518,7 +520,7 @@
     <article class="service-detail reveal" id="bpc">
         <div class="num-tag">01 / Service Detail</div>
         <h3>Business Process Consulting</h3>
-        <p style="color: var(--c-text-mute); margin-bottom: 32px;">業務変革コンサルティング</p>
+        <p class="service-detail__sub">業務変革コンサルティング</p>
         <div class="cols-2">
             <div>
                 <h4>サービス例</h4>
@@ -543,7 +545,7 @@
     <article class="service-detail reveal" id="it-consulting">
         <div class="num-tag">02 / Service Detail</div>
         <h3>IT Consulting</h3>
-        <p style="color: var(--c-text-mute); margin-bottom: 32px;">ITコンサルティング</p>
+        <p class="service-detail__sub">ITコンサルティング</p>
         <div class="cols-2">
             <div>
                 <h4>サービス例</h4>
@@ -570,7 +572,7 @@
     <article class="service-detail reveal" id="tech-consulting">
         <div class="num-tag">03 / Service Detail</div>
         <h3>Technology Consulting</h3>
-        <p style="color: var(--c-text-mute); margin-bottom: 32px;">テクノロジーコンサルティング</p>
+        <p class="service-detail__sub">テクノロジーコンサルティング</p>
         <div class="cols-2">
             <div>
                 <h4>サービス例</h4>
@@ -596,7 +598,7 @@
     <article class="service-detail reveal" id="analytics">
         <div class="num-tag">04 / Service Detail</div>
         <h3>Data Analytics</h3>
-        <p style="color: var(--c-text-mute); margin-bottom: 32px;">データアナリティクス</p>
+        <p class="service-detail__sub">データアナリティクス</p>
         <div class="cols-2">
             <div>
                 <h4>サービス例</h4>
@@ -618,7 +620,7 @@
     <article class="service-detail reveal" id="system-integration">
         <div class="num-tag">05 / Service Detail</div>
         <h3>System Integration</h3>
-        <p style="color: var(--c-text-mute); margin-bottom: 32px;">システムインテグレーション</p>
+        <p class="service-detail__sub">システムインテグレーション</p>
         <div class="cols-2">
             <div>
                 <h4>サービス例</h4>
@@ -640,7 +642,7 @@
     <article class="service-detail reveal" id="joint-development">
         <div class="num-tag">06 / Service Detail</div>
         <h3>Joint Development</h3>
-        <p style="color: var(--c-text-mute); margin-bottom: 32px;">共同出資によるシステム開発</p>
+        <p class="service-detail__sub">共同出資によるシステム開発</p>
         <div class="cols-2">
             <div>
                 <h4>サービス例</h4>

@@ -202,6 +202,18 @@
                 toggle.classList.toggle('is-open');
                 navMain.classList.toggle('is-open');
                 if (navLang) navLang.classList.toggle('is-open');
+                // メニューを開いている間は背面のページスクロールを抑制
+                const isOpen = navMain.classList.contains('is-open');
+                document.body.classList.toggle('is-menu-open', isOpen);
+            });
+            // メニュー内のリンクをタップしたら自動でメニューを閉じる（モバイル UX 向上）
+            navMain.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    toggle.classList.remove('is-open');
+                    navMain.classList.remove('is-open');
+                    if (navLang) navLang.classList.remove('is-open');
+                    document.body.classList.remove('is-menu-open');
+                });
             });
         }
 
@@ -260,16 +272,54 @@
         els.forEach(el => io.observe(el));
     }
 
-    /* ----- Hero video: ensure smooth autoplay + graceful fallback ----- */
+    /* ----- Hero video: ensure smooth autoplay + graceful fallback -----
+       Mobile browsers (especially iOS Safari with Low Power Mode or
+       Android browsers with Data Saver) sometimes refuse to play the
+       background MP4. In that case we mark the .hero section as
+       `video-failed` so the CSS fallback background image takes over. */
     function initHeroVideo() {
         const video = document.querySelector('.hero-video');
         if (!video) return;
-        // Some browsers block autoplay until user interaction — attempt play and ignore failure
+        const hero = video.closest('.hero');
+
+        const markFailed = () => {
+            if (hero) hero.classList.add('video-failed');
+        };
+        const markOk = () => {
+            if (hero) hero.classList.remove('video-failed');
+        };
+
+        // Attempt autoplay — if rejected (e.g. mobile blocking), fall back to image.
         const tryPlay = () => {
             const p = video.play();
-            if (p && typeof p.catch === 'function') p.catch(() => { /* poster will show */ });
+            if (p && typeof p.catch === 'function') {
+                p.then(markOk).catch(markFailed);
+            }
         };
         tryPlay();
+
+        // Network/decoding errors → fall back to image
+        video.addEventListener('error', markFailed);
+        // <source> failed to load (e.g. 404 or unsupported codec)
+        const src = video.querySelector('source');
+        if (src) src.addEventListener('error', markFailed);
+        // If after a short grace period the video still has no frames, give up
+        setTimeout(() => {
+            // readyState < 2 means we don't even have current frame data
+            if (video.readyState < 2 || video.paused) {
+                // Try one more time before failing
+                const p = video.play();
+                if (p && typeof p.catch === 'function') {
+                    p.then(markOk).catch(markFailed);
+                } else if (video.paused) {
+                    markFailed();
+                }
+            }
+        }, 2500);
+
+        // Successful playback → ensure fallback class is cleared
+        video.addEventListener('playing', markOk);
+
         // If page is restored from BFCache or visibility changes, re-try
         document.addEventListener('visibilitychange', () => {
             if (!document.hidden) tryPlay();

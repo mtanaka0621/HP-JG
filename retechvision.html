@@ -12,24 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* RETECH VISION page-specific accents */
-        .rv-logo {
-            font-family: var(--f-sans);
-            font-weight: 900;
-            font-size: clamp(36px, 5vw, 64px);
-            letter-spacing: .08em;
-            line-height: 1;
-            color: #fff;
-            margin-bottom: 12px;
-        }
-        .rv-logo .accent { color: var(--c-accent); }
-        .rv-tagline {
-            font-family: var(--f-sans);
-            font-size: 12px;
-            letter-spacing: .35em;
-            color: var(--c-accent);
-            margin-bottom: 24px;
-        }
+        /* RETECH VISION page-specific accents
+           (旧 .rv-logo / .rv-tagline はサイト共通の .section-head + .eyebrow +
+            h2 スタイルに統一したため削除済み) */
         .rv-targets {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -150,6 +135,14 @@
             color: #fff;
         }
         .rv-cap-table td { color: var(--c-text-mute); }
+
+        /* 各セクションの導入文（.section-head .sub）を統一: 16px / 白 / 他セクションと同じ幅 */
+        #page-retech .section-head .sub {
+            font-size: 16px;
+            color: #ffffff;
+            line-height: 2;
+            max-width: none;  /* 760px制限を解除し他のセクション（mission-body）と同じ幅に */
+        }
     </style>
 </head>
 <body id="page-retech">
@@ -206,23 +199,25 @@
 </section>
 
 <!-- ============== Service target ============== -->
+<!-- 他のセクション (.section-head + .sub + .mission-body) と同じ標準構造に統一。
+     左寄せ、共通の .eyebrow / h2 / .sub / .mission-body スタイルを使用する。 -->
 <section class="section" id="service-target">
     <div class="container">
-        <div class="reveal" style="max-width: 920px; margin: 0 auto;">
-            <div class="rv-tagline">RETECH VISION</div>
-            <div class="rv-logo">RETECH <span class="accent">VISION</span></div>
-            <p style="color: var(--c-text-mute); font-size: 16px; margin-top: 24px;">
-                不動産仲介会社、管理会社、家賃保証会社のためのデータ分析・業績管理高度化サービス
-            </p>
+        <div class="section-head reveal">
+            <div class="eyebrow">Retech Vision</div>
+            <h2>RETECH <span class="accent">VISION</span></h2>
+            <p class="sub">不動産仲介会社、管理会社、家賃保証会社のためのデータ分析・業績管理高度化サービス</p>
+        </div>
 
-            <div class="rv-targets">
-                <div class="target">不動産仲介会社</div>
-                <div class="target">管理会社</div>
-                <div class="target">家賃保証会社</div>
-            </div>
+        <div class="rv-targets reveal">
+            <div class="target">不動産仲介会社</div>
+            <div class="target">管理会社</div>
+            <div class="target">家賃保証会社</div>
+        </div>
 
-            <p style="color: var(--c-text-mute); font-size: 15px;">RETECH VISION は不動産企業のデータ分析、および業績管理の高度化に貢献します。</p>
-            <p style="color: var(--c-text-mute); font-size: 15px;">売上拡大を実現するための業績管理に特化したソリューションです。</p>
+        <div class="mission-body reveal">
+            <p>RETECH VISION は不動産企業のデータ分析、および業績管理の高度化に貢献します。</p>
+            <p>売上拡大を実現するための業績管理に特化したソリューションです。</p>
         </div>
     </div>
 </section>
@@ -236,21 +231,21 @@
         </div>
 
         <div class="cols-2 reveal">
-            <div>
-                <h3 style="font-family: var(--f-sans); font-size: 20px; color: #fff; margin-bottom: 16px; line-height: 1.5;">集めたデータから得られている<br><span style="color: var(--c-accent);">考察</span>は？</h3>
-                <h3 style="font-family: var(--f-sans); font-size: 20px; color: #fff; margin-bottom: 24px; line-height: 1.5;">そこから実施している<br><span style="color: var(--c-accent);">アクション</span>は？</h3>
-                <p style="color: var(--c-text-mute); font-size: 14px;">ほとんどの企業にてデータ集計は行われていますが、集計したデータから得られる考察はどのようなものでしょうか？</p>
-                <ul style="color: var(--c-text-mute); padding-left: 20px; font-size: 14px; line-height: 1.9;">
+            <div class="mission-body">
+                <h3 style="font-family: var(--f-sans); font-size: 20px; color: #fff; margin-bottom: 16px; line-height: 1.5;">集めたデータから得られている<span style="color: var(--c-accent);">考察</span>は？</h3>
+                <h3 style="font-family: var(--f-sans); font-size: 20px; color: #fff; margin-bottom: 24px; line-height: 1.5;">そこから実施している<span style="color: var(--c-accent);">アクション</span>は？</h3>
+                <p>ほとんどの企業にてデータ集計は行われていますが、集計したデータから得られる考察はどのようなものでしょうか？</p>
+                <ul>
                     <li>「今期の売上合計は昨年より13％上回っている」</li>
                     <li>「売上の30％は関東エリアである」</li>
                     <li>「関東エリアでの平均賃料は60,000円である」</li>
                 </ul>
             </div>
-            <div>
-                <p style="color: var(--c-text-mute); font-size: 14px; line-height: 2;">
+            <div class="mission-body">
+                <p>
                     こういった考察がほとんどであるように見受けられます。これらは経営管理上大切な情報ですが、次のアクションにつなげるデータ分析としては十分ではありません。これらの情報だけでは「去年より落ち込んでいるから頑張れ！」といったケツたたき型のマネジメントにしかつながらないためです。
                 </p>
-                <p style="color: var(--c-text); font-size: 15px; line-height: 2; margin-top: 16px; border-left: 2px solid var(--c-accent); padding-left: 16px;">
+                <p class="accent-quote">
                     データ分析は自社における売上の余白を見つけ出し、更なる売上向上の打ち手につながるものでなければいけません。
                 </p>
             </div>
@@ -301,14 +296,14 @@
             <div class="eyebrow">PDCA Cycle</div>
             <h2>RETECH VISION からつながる<br><span class="accent">改善活動</span></h2>
         </div>
-        <div class="reveal" style="max-width: 920px;">
-            <p style="color: var(--c-text-mute); line-height: 2;">
+        <div class="mission-body reveal">
+            <p>
                 データ分析および業績管理は売上向上やコスト削減等の改善活動につながってはじめて意味が生まれます。改善余地という観点から分析手法を確立しモニタリング、改善施策を立案して実施、その結果を再度確認する。こういった流れが必要です。
             </p>
-            <p style="color: var(--c-text-mute); line-height: 2;">
+            <p>
                 また、これらの改善活動から目に見える経営効果を生み出していくためには PDCA サイクルとして継続し続けていくことが重要です。
             </p>
-            <p style="color: #fff; line-height: 2; margin-top: 24px; border-left: 2px solid var(--c-accent); padding-left: 16px;">
+            <p class="accent-quote">
                 当社のサービスではこれらの改善をワンストップでご支援致します。
             </p>
         </div>
@@ -322,8 +317,8 @@
             <div class="eyebrow">KPI Dashboard</div>
             <h2>業績管理 KPI<br><span class="accent">ダッシュボード</span></h2>
         </div>
-        <div class="reveal" style="max-width: 920px;">
-            <p style="color: var(--c-text-mute); line-height: 2;">
+        <div class="mission-body reveal">
+            <p>
                 当社では仲介会社様、管理会社様、家賃保証会社様に向けた業績管理 KPI のダッシュボードをご用意しています。マーケット対比分析と併せてお使い頂くことにより、より効果的に業績管理の高度化が実現可能となります。
             </p>
         </div>
@@ -378,8 +373,8 @@
             <div class="eyebrow">Platform</div>
             <h2>サービス<span class="accent">プラットフォーム</span></h2>
         </div>
-        <div class="reveal" style="max-width: 920px;">
-            <p style="color: var(--c-text-mute); line-height: 2;">
+        <div class="mission-body reveal">
+            <p>
                 本サービスプラットフォームは以下のような構成となっています。本サービスは基本的に当社がお客様データを預かり分析し結果をお渡しする形態ですが、これらのプラットフォームをお客様にご利用いただくサービス形態もご用意しております。
             </p>
         </div>
@@ -418,28 +413,28 @@
             <h2>その他<span class="accent">分析例</span></h2>
         </div>
 
-        <div class="reveal" style="max-width: 920px;">
-            <p style="color: var(--c-text-mute); line-height: 2;">
+        <div class="mission-body reveal">
+            <p>
                 世の中には多くのデータ分析手法がありますが、そのほとんどが実践的ではありません。多くは今ある結果を理由づける分析となっています。
             </p>
-            <p style="color: var(--c-text-mute); line-height: 2;">
+            <p>
                 当社のサービスは、守秘義務契約を事前に取り交わさせて頂いたうえで貴社データをお預かりし、レポートを作成、そのうえで売上拡大やコスト削減につながる実践的なデータ分析を実施しご提案させて頂きます。
             </p>
-            <p style="color: #fff; margin-top: 24px;">以下に分析例を紹介します。</p>
-            <ul style="color: var(--c-text-mute); padding-left: 20px; line-height: 2;">
+            <p style="margin-top: 24px;">以下に分析例を紹介します。</p>
+            <ul>
                 <li>過去の審査結果より本来契約しても問題なかったであろうデータの分析と対象者の抽出</li>
                 <li>現状の募集物件における価格データの分析と改善余地のあるデータの抽出</li>
                 <li>SNSデータを収集しての自社不動産物件データに関するレピュテーション成分マップ分析</li>
             </ul>
 
-            <p style="color: var(--c-text-mute); line-height: 2; margin-top: 32px;">
+            <p style="margin-top: 32px;">
                 当社がお付き合いするなかで管理会社様ではデータ分析のニーズがあまりないという話をよくお聞きします。これは管理会社様ではデータを取れる方＝入居者であり、入居後のお客様に提供するようなサービスがないためであるということです。
             </p>
-            <p style="color: var(--c-text-mute); line-height: 2;">
+            <p>
                 ですが、これはいいかえると入居者様に対し、あまり施策をうっていないからであると言い換えることができます。これまでのビジネスにとらわれない新しい施策の可能性を積極的に検討して初めてデータを分析してみるニーズが生まれてきます。お客様の新たな模索を私どもからもご支援できればと願います。
             </p>
-            <p style="color: #fff; margin-top: 24px;">例：</p>
-            <ul style="color: var(--c-text-mute); padding-left: 20px; line-height: 2;">
+            <p style="margin-top: 24px;">例：</p>
+            <ul>
                 <li>居住後 1 年目のお客様に対する清掃サービス</li>
                 <li>更新時期を控えたお客様に対する物件情報案内サービス</li>
                 <li>および、仲介手数料割引サービス、保証会社と提携しての保証料割引サービス</li>
@@ -492,7 +487,7 @@
                 <div class="eyebrow">Get in Touch</div>
                 <h2>不動産業界の<br><span class="accent">業績管理高度化</span>を、<br>JG と共に</h2>
             </div>
-            <p style="color: var(--c-text-mute);">RETECH VISION に関するご相談・お問い合わせはこちらから。</p>
+            <p style="color: #ffffff; font-size: 16px; line-height: 2;">RETECH VISION に関するご相談・お問い合わせはこちらから。</p>
             <div style="margin-top: 32px;">
                 <a href="services.html#contact" class="btn btn--primary">お問い合わせ</a>
             </div>

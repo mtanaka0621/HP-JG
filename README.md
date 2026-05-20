@@ -22,6 +22,17 @@
 
 ## ✅ Completed Features
 
+### 0-0. 🆕 ヒーロー動画のモバイル向けフォールバック画像対応（2026-05-20 完了）
+携帯端末のブラウザ（iOS Safari の Low Power Mode、Android の Data Saver 等）でトップページのヒーロー動画 `images/video/hero-video.mp4` が自動再生されず、ヒーローセクションが真っ黒で何も表示されない問題に対応。
+- [x] フォールバック画像 `images/hero/hero-fallback.jpg`（オフィスビル夜景・151KB）を追加
+- [x] `<video>` 要素に `poster="images/hero/hero-fallback.jpg"` を設定 → 動画ロード前／ブロック時にブラウザネイティブで表示
+- [x] `.hero` セクションの CSS `background-image` にも同画像を設定 → `<video>` が DOM 上に存在しても再生できない場合の保険として常に背景表示
+- [x] `js/main.js` の `initHeroVideo()` を強化：
+  - `video.play()` の Promise reject、`<video>` / `<source>` の `error` イベント、2.5秒経過後の readyState チェックを多段で検知
+  - 失敗時は `.hero` に `video-failed` クラスを付与し、`<video>` を `display:none` にしてフォールバック画像を全画面表示
+  - 再生成功時は `playing` イベントでクラスを除去
+- [x] PC ブラウザでは従来通り動画が自動再生される（後方互換性を維持）
+
 ### 0. 🆕 画像アセットの完全ローカル化（2026-05 完了）
 - [x] **全画像を `images/` 配下に一元管理**（カテゴリ別に 8 サブフォルダで整理）
 - [x] 外部 Genspark CDN URL を全 17 本番 HTML ファイル / `css/style.css` から完全に排除

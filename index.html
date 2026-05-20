@@ -163,12 +163,13 @@
 <section class="hero" id="hero-section">
 
     <!-- Full-bleed background video.
-         NOTE: `poster` is intentionally omitted so that the browser shows the
-         video's own first frame instead of an unrelated office photo while
-         loading. The dark `.hero` background-color (#050507) acts as a
-         seamless placeholder until the first frame is decoded. -->
+         `poster` provides a fallback image for mobile / data-saver / autoplay
+         blocked situations where the MP4 cannot or will not play. The same
+         image is also set as the `.hero` background-image via CSS so it shows
+         underneath the <video> element while loading or if playback fails. -->
     <video class="hero-video"
            id="hero-video"
+           poster="images/hero/hero-fallback.jpg"
            autoplay muted loop playsinline webkit-playsinline preload="auto">
         <source src="images/video/hero-video.mp4" type="video/mp4">
     </video>
@@ -249,7 +250,7 @@
         </div>
         <div class="cols-2" id="feature-teaser-cols">
             <article class="card reveal">
-                <span class="num">01 / STRATEGY</span>
+                <span class="num">01 / CONSULTING</span>
                 <h3>業務改革と基幹システム構築における<br>高い専門性</h3>
                 <p>大手コンサルティングファーム出身者を中心とした中堅層の厚い少数精鋭体制で、不動産・製造業をはじめとする業務改革と、ERPなど基幹システム構築の上流工程に強みを持ちます。ビジネスと先端技術の双方を理解したコンサルタントが、構想策定からPMOまでを一貫して担います。</p>
             </article>

@@ -382,7 +382,8 @@ LEGACY-SCRIPT-END -->
         color: #fff;
     }
     .global-expansion .section-head .sub {
-        color: rgba(255, 255, 255, 0.78);
+        font-size: 16px;          /* 統一: 16px */
+        color: #ffffff;           /* 統一: 白（透過 0.78 → 完全な白） */
     }
     /* Translucent cards that float over the map */
     .global-expansion .card {
@@ -399,7 +400,8 @@ LEGACY-SCRIPT-END -->
         color: #fff;
     }
     .global-expansion .card p {
-        color: rgba(255, 255, 255, 0.78);
+        font-size: 16px;          /* .card p デフォルトの 14px → 16px に統一 */
+        color: #ffffff;           /* 統一: 白（透過 0.78 → 完全な白） */
     }
 
     /* ====== Hero title: Consulting × Technology ====== */
@@ -691,8 +693,9 @@ LEGACY-SCRIPT-END -->
     }
 
     #president-message .president-card__text > p {
+        font-size: 16px;              /* 14px → 16px に拡大 */
         line-height: 2.0;
-        color: var(--c-text-mute);
+        color: #ffffff;               /* 薄グレー → 白に統一 */
         margin-bottom: 18px;
         position: relative;
         z-index: 1;
@@ -700,9 +703,10 @@ LEGACY-SCRIPT-END -->
     #president-message .president-card__text > p:last-child {
         margin-bottom: 0;
     }
+    /* 強調表示は不要 → <strong> も通常文字と同じ見た目に揃える */
     #president-message .president-card__text > p strong {
-        color: var(--c-text);
-        font-weight: 700;
+        color: #ffffff;
+        font-weight: 400;
     }
 
     /* Signature block */
@@ -719,15 +723,15 @@ LEGACY-SCRIPT-END -->
     }
     #president-message .president-signature .ps-role {
         font-family: var(--f-sans);
-        font-size: 11px;
+        font-size: 14px;              /* 11px → 14px に拡大 */
         letter-spacing: .25em;
-        color: var(--c-text-soft);
+        color: #ffffff;               /* グレー → 白に統一 */
     }
     #president-message .president-signature .ps-title-ja {
         font-family: var(--f-jp);
-        font-size: 12px;
+        font-size: 15px;              /* 12px → 15px に拡大 */
         letter-spacing: .25em;
-        color: var(--c-text-mute);
+        color: #ffffff;               /* 薄グレー → 白に統一 */
         margin-top: 2px;
     }
     #president-message .president-signature .ps-name-ja {
@@ -843,10 +847,13 @@ LEGACY-SCRIPT-END -->
                 <div class="eyebrow">Vision</div>
                 <h2>さらにその先へ。<br><span class="accent">Beyond.</span></h2>
             </div>
-            <p style="color: var(--c-text-mute);">コンサルティングを通じて出会う社会全体が抱える課題について、世界中のより多くの企業の変革を目指します。</p>
-            <p style="color: var(--c-text-mute);">よりよい社会の創出に向け、さらに大きな視点を持った改革の実現を進めています。</p>
+            <!-- 全セクション共通の本文スタイル (.mission-body p: 16px / 白) を適用 -->
+            <div class="mission-body">
+                <p>コンサルティングを通じて出会う社会全体が抱える課題について、世界中のより多くの企業の変革を目指します。</p>
+                <p>よりよい社会の創出に向け、さらに大きな視点を持った改革の実現を進めています。</p>
+            </div>
             <p class="vision-secret-link" style="margin-top: 2.4rem; font-family: var(--f-jp); font-size: 0.85rem; letter-spacing: 0.04em;">
-                <a href="corevalues.html" style="display: inline-flex; align-items: baseline; gap: 0.6em; color: var(--c-text-soft); text-decoration: none; border-bottom: 1px solid rgba(230, 0, 126, 0.35); padding-bottom: 0.35em; transition: color 0.3s ease, border-color 0.3s ease;" onmouseover="this.style.color='var(--c-accent-2)';this.style.borderColor='var(--c-accent-2)';" onmouseout="this.style.color='var(--c-text-soft)';this.style.borderColor='rgba(230, 0, 126, 0.35)';">
+                <a href="corevalues.html" style="display: inline-flex; align-items: baseline; gap: 0.6em; color: #ffffff; text-decoration: none; border-bottom: 1px solid rgba(230, 0, 126, 0.35); padding-bottom: 0.35em; transition: color 0.3s ease, border-color 0.3s ease;" onmouseover="this.style.color='var(--c-accent-2)';this.style.borderColor='var(--c-accent-2)';" onmouseout="this.style.color='#ffffff';this.style.borderColor='rgba(230, 0, 126, 0.35)';">
                     <span style="font-style: italic; font-family: var(--f-serif); font-size: 1.05rem; color: var(--c-accent);">—</span>
                     <span>私たちの思想について詳しく知りたい方はこちら</span>
                     <span aria-hidden="true" style="font-family: var(--f-serif); font-size: 1.1rem;">→</span>
@@ -941,7 +948,7 @@ LEGACY-SCRIPT-END -->
     <div class="container">
         <div class="section-head reveal">
             <div class="eyebrow">Message</div>
-            <h2>代表挨拶<br><span class="accent">President's Message.</span></h2>
+            <h2>代表挨拶</h2>
         </div>
 
         <div class="president-message-body reveal">
@@ -952,7 +959,7 @@ LEGACY-SCRIPT-END -->
 
                 <div class="president-card__text">
                     <p>日本企業を取り巻く経営環境は、テクノロジーの急速な進化とグローバル競争の激化により、かつてないスピードで変化しています。一方で、日本企業の IT 化の遅れと開発コストの高さは、長らく現場の生産性を圧迫し続けてきました。</p>
-                    <p>JG CORPORATION は、こうした課題に正面から向き合うため、コンサルティングファーム出身者を中心とした少数精鋭の専門家集団として 2017 年に設立されました。<strong>「コンサルティング」と「エンジニアリング」、そして「バイリンガル」</strong>という 3 つのコアケイパビリティを組み合わせ、戦略立案から実装、保守までを一気通貫でご支援することが私たちの強みです。</p>
+                    <p>JG CORPORATION は、こうした課題に正面から向き合うため、コンサルティングファーム出身者を中心とした少数精鋭の専門家集団として 2017 年に設立されました。「コンサルティング」と「エンジニアリング」、そして「バイリンガル」という 3 つのコアケイパビリティを組み合わせ、戦略立案から実装、保守までを一気通貫でご支援することが私たちの強みです。</p>
                     <p>東京・博多・セブの 3 拠点体制を活かし、日本品質のコンサルティングと、フィリピンセブのオフショアによる価格競争力あるエンジニアリングを融合。お客様にとって本当に「便利になった」と実感頂ける変革を、誠実に、そして力強く推し進めてまいります。</p>
                     <p>私たち一人ひとりが、お客様の事業に深く寄り添うパートナーであり続けること。それが JG CORPORATION の存在意義です。これからも変わらぬご支援を賜りますよう、心よりお願い申し上げます。</p>
                 </div>
@@ -985,7 +992,7 @@ LEGACY-SCRIPT-END -->
                         <span class="ja">菊池 道夫</span>
                         <span class="en">Kikuchi Michio</span>
                     </div>
-                    <div class="prof-title">執行役員 マネージングディレクター</div>
+                    <div class="prof-title">執行役員<br>マネージングディレクター</div>
                     <div class="prof-tag">経営／コンサルティング統括</div>
                     <p class="prof-bio">大手コンサルティングファームにて、製造業・不動産業など幅広い業界の経営改革・業務改革プロジェクトを長年にわたりリード。豊富な変革経験とマネジメント力を活かし、当社のコンサルティング事業全体を牽引している。</p>
                 </div>
@@ -999,7 +1006,7 @@ LEGACY-SCRIPT-END -->
                         <span class="ja">田口 貴一</span>
                         <span class="en">Taguchi Kiichi</span>
                     </div>
-                    <div class="prof-title">執行役員 マネージングディレクター</div>
+                    <div class="prof-title">執行役員<br>マネージングディレクター</div>
                     <div class="prof-tag">経営／テクノロジー統括</div>
                     <p class="prof-bio">大手コンサルティングファームにて、大規模システム構築・DX 推進プロジェクトを多数リードしてきた実績を持つ。コンサルティングとテクノロジーを融合したデリバリ体制の構築に従事し、当社のテクノロジー事業全体を統括している。</p>
                 </div>
@@ -1200,7 +1207,8 @@ LEGACY-SCRIPT-END -->
 <!-- ============== About Cebu Island ============== -->
 <section class="section" id="cebu-info">
     <div class="container">
-        <div class="section-head reveal text-center" style="text-align: center;">
+        <!-- 他のセクション（About / Global Expansion 等）と揃え、タイトルを左寄せに統一 -->
+        <div class="section-head reveal">
             <div class="eyebrow">About Cebu</div>
             <h2>フィリピン<span class="accent">セブ島</span>について</h2>
         </div>
@@ -1285,13 +1293,14 @@ LEGACY-SCRIPT-END -->
         position: relative;
     }
     #cebu-info .cebu-lead {
-        max-width: 1080px;
-        margin: 0 auto 56px;
-        text-align: center;
+        /* 他セクションの .mission-body p と幅・配置を統一 (max-width 指定なし →
+           親 .container の 1200px までフル幅、左寄せ) */
+        margin: 0 0 56px;
+        text-align: left;
         font-family: var(--f-jp);
-        font-size: 16px;
+        font-size: 16px;          /* 統一: 16px */
         line-height: 2.0;
-        color: var(--c-text-mute);
+        color: #ffffff;           /* 統一: 白（他セクションの mission-body p と統一） */
     }
     #cebu-info .cebu-grid {
         display: grid;
@@ -1338,19 +1347,20 @@ LEGACY-SCRIPT-END -->
     #cebu-info .cebu-card__caption {
         padding: 20px 22px 24px;
         font-family: var(--f-jp);
-        font-size: 14px;
+        font-size: 16px;
         line-height: 1.85;
-        color: var(--c-text-mute);
+        color: var(--c-text-mute);  /* グレー（強調なし） */
         flex: 1;
     }
+    /* strong による太字強調を解除して通常テキストと同じ見た目に統一 */
     #cebu-info .cebu-card__caption strong {
-        color: var(--c-text);
-        font-weight: 700;
+        color: inherit;
+        font-weight: inherit;
     }
 
     @media (max-width: 900px) {
         #cebu-info .cebu-grid { grid-template-columns: 1fr; gap: 22px; }
-        #cebu-info .cebu-lead { font-size: 15px; line-height: 1.9; margin-bottom: 40px; }
+        #cebu-info .cebu-lead { font-size: 16px; line-height: 1.9; margin-bottom: 40px; }
     }
 </style>
 

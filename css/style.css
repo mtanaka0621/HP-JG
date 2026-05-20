@@ -287,18 +287,49 @@ p { margin: 0 0 1em; }
 
 @media (max-width: 1080px) {
     .nav-toggle { display: block; }
-    .nav-main, .nav-lang {
+
+    /* \u30e1\u30a4\u30f3\u30e1\u30cb\u30e5\u30fc\uff1a\u753b\u9762\u4e0a\u90e8\u304b\u3089\u4e0b\u7aef\u307e\u3067\u306e\u30b9\u30af\u30ed\u30fc\u30eb\u53ef\u80fd\u30b7\u30fc\u30c8\u3068\u3057\u3066\u8868\u793a\u3002
+       \u8a18\u4e8b\u9805\u76ee\u304c\u591a\u3044\u5834\u5408\u3067\u3082\u753b\u9762\u5916\u306b\u898b\u5207\u308c\u305a\u3001\u5185\u90e8\u3067\u30b9\u30af\u30ed\u30fc\u30eb\u3057\u3066\u9805\u76ee\u3092\u30bf\u30c3\u30d7\u3067\u304d\u308b\u3088\u3046\u306b\u3059\u308b\u3002
+       \u8a00\u8a9e\u5207\u66ff (.nav-lang) \u306f\u753b\u9762\u4e0b\u7aef\u306b\u30d5\u30a3\u30af\u30b9\u3057\u3066\u5e38\u306b\u898b\u3048\u308b\u3088\u3046\u306b\u3059\u308b\u3002*/
+    .nav-main {
         position: fixed;
         top: var(--nav-h);
-        left: 0; right: 0;
+        left: 0; right: 0;                                     /* \u753b\u9762\u4e0b\u7aef\u307e\u3067\u4f38\u3070\u3059 */
+        /* heightを明示してメニュー領域を画面下端まで広げる */
+        height: calc(100vh - var(--nav-h));
+        height: calc(100dvh - var(--nav-h));
+        box-sizing: border-box;
+        max-height: calc(100vh - var(--nav-h));        /* \u30d5\u30a9\u30fc\u30eb\u30d0\u30c3\u30af */
+        max-height: calc(100dvh - var(--nav-h));       /* iOS \u30a2\u30c9\u30ec\u30b9\u30d0\u30fc\u4f38\u7e2e\u5bfe\u7b56 */
         background: rgba(10,10,12,0.97);
         backdrop-filter: blur(14px);
         border-top: 1px solid var(--c-line);
         flex-direction: column;
         align-items: flex-start;
-        padding: 24px;
+        padding: 24px 24px 80px;                       /* \u4e0b\u90e8\u306b .nav-lang \u5206\u306e\u4f59\u767d\u3092\u78ba\u4fdd */
         gap: 0;
+        overflow-y: auto;                              /* \u9805\u76ee\u304c\u591a\u3044\u3068\u304d\u306f\u5185\u90e8\u30b9\u30af\u30ed\u30fc\u30eb */
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
         transform: translateY(-12px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .25s, transform .25s;
+    }
+    .nav-lang {
+        position: fixed;
+        left: 0; right: 0;
+        bottom: 0;                                     /* \u753b\u9762\u6700\u4e0b\u90e8\u306b\u56fa\u5b9a */
+        top: auto;
+        background: rgba(10,10,12,0.97);
+        backdrop-filter: blur(14px);
+        border-top: 1px solid var(--c-line);
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 14px 24px calc(14px + env(safe-area-inset-bottom)); /* iPhone \u306e\u30db\u30fc\u30e0\u30d0\u30fc\u9818\u57df\u3092\u907f\u3051\u308b */
+        gap: 0;
+        transform: translateY(12px);
         opacity: 0;
         pointer-events: none;
         transition: opacity .25s, transform .25s;
@@ -309,11 +340,11 @@ p { margin: 0 0 1em; }
         pointer-events: auto;
     }
     .nav-main a { font-size: 15px; padding: 14px 0; width: 100%; }
-    .nav-lang {
-        top: auto;
-        flex-direction: row;
-        padding: 0 24px 24px;
-        border-top: none;
+
+    /* メニュー展開中は背面ページのスクロールをロック */
+    body.is-menu-open {
+        overflow: hidden;
+        touch-action: none;
     }
 }
 
@@ -491,7 +522,14 @@ p { margin: 0 0 1em; }
     justify-content: center;
     overflow: hidden;
     isolation: isolate;
-    background: #050507;
+    /* Fallback background image — shown on mobile / data-saver / when the
+       <video> cannot autoplay or fails to load. The <video> sits on top
+       (z-index:0) so when it plays it covers this image naturally. */
+    background-color: #050507;
+    background-image: url("../images/hero/hero-fallback.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* Layer 0: Full-bleed background video */
@@ -503,6 +541,12 @@ p { margin: 0 0 1em; }
     height: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+/* When JS detects the video failed (or was blocked) we hide the <video>
+   element so the .hero background-image becomes fully visible. */
+.hero.video-failed .hero-video {
+    display: none;
 }
 
 /* Layer 1: Dark overlay for legibility */
@@ -832,8 +876,8 @@ p { margin: 0 0 1em; }
 }
 .page-banner .lead {
     max-width: 720px;
-    color: #ffffff;                   /* 薄いグレー → 白に変更（可読性向上） */
-    font-size: 14px;                  /* 16px → 14px に調整 */
+    color: #ffffff;                   /* 白（全ページ統一） */
+    font-size: 16px;                  /* 全ヒーロー詳細説明文を 16px に統一 */
     line-height: 2;
     padding-left: 16px;
     border-left: 2px solid var(--c-accent);
@@ -956,6 +1000,29 @@ p { margin: 0 0 1em; }
 }
 .card p { color: var(--c-text-mute); font-size: 14px; line-height: 1.9; margin: 0; }
 
+/* Evaluation \u30bb\u30af\u30b7\u30e7\u30f3 01-03 \u756a\u53f7\u3092\u5927\u304d\u304f\u30fbBold\u306b */
+#evaluation .card .num {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: .2em;
+}
+
+/* ===========================================================
+   Top page — Feature teaser cards (#feature-teaser-cols)
+   ピンクのカテゴリラベル ("01 / CONSULTING" 等) は 14px / Bold、
+   詳細説明テキストは 16px で表示する。色は他カードと統一の
+   グレー (var(--c-text-mute)) を維持。
+   他ページの .card 汎用スタイルには影響させない。
+   =========================================================== */
+#feature-teaser-cols .card .num {
+    font-size: 14px;
+    font-weight: 700;
+}
+#feature-teaser-cols .card p {
+    font-size: 16px;
+    /* color は .card p のデフォルト var(--c-text-mute) を継承 */
+}
+
 /* Image with overlay */
 .figure {
     position: relative;
@@ -1077,10 +1144,18 @@ p { margin: 0 0 1em; }
 }
 .service-detail .num-tag {
     font-family: var(--f-sans);
-    font-size: 12px;
+    font-size: 14px;          /* 12px → 14px に統一 */
+    font-weight: 700;          /* Bold */
     letter-spacing: .35em;
     color: var(--c-accent);
     margin-bottom: 18px;
+}
+/* 日本語サブタイトル — h3 直後の段落: 16px / 白 */
+.service-detail .service-detail__sub {
+    font-family: var(--f-jp);
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 32px;
 }
 .service-detail h4 {
     font-family: var(--f-sans);
@@ -1216,11 +1291,12 @@ p { margin: 0 0 1em; }
 .position-row:last-child { border-bottom: none; }
 .position-row .key {
     font-family: var(--f-sans);
-    font-size: 12px;
+    font-size: 16px;           /* 12px → 16px に統一 */
+    font-weight: 700;          /* Bold */
     letter-spacing: .2em;
     color: var(--c-accent);
 }
-.position-row .val { color: var(--c-text-mute); font-size: 14px; line-height: 2; }
+.position-row .val { color: var(--c-text-mute); font-size: 16px; line-height: 2; }  /* 14px → 16px */
 @media (max-width: 720px) {
     .position-row { grid-template-columns: 1fr; gap: 6px; }
     .position-block { padding: 24px; }
@@ -1289,7 +1365,10 @@ p { margin: 0 0 1em; }
     display: block;
     margin-bottom: 18px;
 }
-.footer-brand p { color: var(--c-text-soft); font-size: 13px; line-height: 1.9; max-width: 360px; }
+/* max-width を 360px → 460px に広げて、「拠点を持ちます。」の
+   "す。" だけが 4 行目に折り返される問題を解消し、確実に 3 行表示に収める。
+   端末ごとの微細なフォントレンダリング差にも耐える余裕を持たせている */
+.footer-brand p { color: var(--c-text-soft); font-size: 12px; line-height: 1.9; max-width: 460px; }
 .footer-col h4 {
     font-family: var(--f-sans);
     font-size: 11px;
@@ -1505,6 +1584,21 @@ p { margin: 0 0 1em; }
     margin: 0 0 16px;
 }
 .mission-body p:last-child { margin-bottom: 0; }
+.mission-body ul {
+    font-size: 16px;
+    line-height: 2;
+    color: #ffffff;
+    padding-left: 20px;
+    margin: 0 0 16px;
+}
+.mission-body ul:last-child { margin-bottom: 0; }
+.mission-body ul li { margin-bottom: 4px; }
+/* アクセント引用（border-left）— 強調表示の段落 */
+.mission-body p.accent-quote {
+    border-left: 2px solid var(--c-accent);
+    padding-left: 16px;
+    margin-top: 24px;
+}
 
 /* ===========================================================
    Feature block — illustration as foreground content
@@ -1563,7 +1657,7 @@ p { margin: 0 0 1em; }
 .feature-text h2 .accent { color: var(--c-accent); }
 .feature-text .feature-sub {
     font-family: var(--f-sans);
-    font-size: 15px;
+    font-size: 18px;                  /* 15px → 18px に拡大 */
     font-weight: 600;
     letter-spacing: .04em;
     color: var(--c-accent);
@@ -1572,10 +1666,10 @@ p { margin: 0 0 1em; }
     border-left: 3px solid var(--c-accent);
 }
 .feature-text p {
-    color: var(--c-text-mute);
+    color: #ffffff;                   /* 薄グレー → 白に統一 */
     line-height: 2;
     margin-bottom: 16px;
-    font-size: 15px;
+    font-size: 16px;                  /* 15px → 16px に統一 */
 }
 .feature-text p:last-child { margin-bottom: 0; }
 
@@ -1841,9 +1935,9 @@ p { margin: 0 0 1em; }
 
 .prof-title {
     font-family: var(--f-sans);
-    font-size: 10px;
+    font-size: 14px;              /* 10px → 14px に拡大 */
     letter-spacing: .14em;
-    color: var(--c-text-mute);
+    color: #ffffff;               /* 薄グレー → 白に統一 */
     text-transform: uppercase;
     line-height: 1.7;
     padding-bottom: 10px;
@@ -1863,7 +1957,7 @@ p { margin: 0 0 1em; }
 }
 
 .prof-bio {
-    font-size: 12px;
+    font-size: 14px;              /* 12px → 14px に拡大 */
     line-height: 1.8;
     color: var(--c-text-mute);
     margin: 4px 0 0;

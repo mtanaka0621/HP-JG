@@ -255,7 +255,7 @@
 │   └── main.js                    # 全インタラクション
 └── images/                        # 画像アセット（すべてローカルに一元管理）
     ├── logo/                      # ロゴ・ファビコン類
-    │   ├── favicon.svg
+    │   ├── favicon.png
     │   ├── logo-jg-dark.svg
     │   ├── logo-jg-white.svg
     │   ├── jg-corporation-banner.png     # 全ページ共通のヘッダー/フッターロゴ

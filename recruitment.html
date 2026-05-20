@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="JG CORPORATION 採用情報｜コンサルティングやテクノロジーの力を使って何かを成し遂げたいと考えている人の器になることができる会社を目指しています。">
     <title>採用情報 ｜ JG CORPORATION</title>
-    <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg">
+    <link rel="icon" type="image/png" href="images/logo/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
@@ -69,15 +69,7 @@
             .model-card-grid { grid-template-columns: 1fr; gap: 18px; }
         }
 
-        /* Mission body (Aboutページと統一: 全幅・左揃え本文) */
-        .mission-body { margin: 0; }
-        .mission-body p {
-            font-size: 14px;
-            line-height: 2;
-            color: var(--c-text);
-            margin: 0 0 16px;
-        }
-        .mission-body p:last-child { margin-bottom: 0; }
+        /* .mission-body p の本文スタイルは共通 css/style.css に集約済み（ここでは個別指定なし） */
 
         /* ============ Our Structure (リデザイン) ============ */
         /* キャッチコピー：1行・程よいサイズ */
@@ -1188,6 +1180,30 @@
         @media (max-width: 560px) {
             #enjoy-banner { min-height: 460px; padding: 70px 16px; }
             .enjoy-banner__lead { font-size: 13px; }
+        }
+
+        /* ============== Hero banner: 画質改善（透過・拡大設定の見直し） ==============
+           ABOUT/Servicesページと同じ手法。
+           既定の .page-banner-bg は inset:-6% + scale(1.08)→1.16 アニメで
+           実質約1.16〜1.23倍の拡大表示となり、画像がボヤけて見えるため、
+           等倍表示＋オーバーレイ軽量化で解像感を活かす。 */
+        #page-recruitment .page-banner-bg {
+            inset: 0;
+            transform: none;
+            animation: none;
+            will-change: auto;
+            filter: brightness(.92) contrast(1.02) saturate(1.03);
+            image-rendering: auto;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        #page-recruitment .page-banner::after {
+            background:
+                radial-gradient(ellipse 60% 50% at 75% 25%, rgba(230,0,126,0.08), transparent 70%),
+                linear-gradient(180deg, rgba(5,5,7,0.15) 0%, rgba(5,5,7,0.35) 100%);
+        }
+        #page-recruitment .page-banner::before {
+            opacity: .08;
         }
     </style>
 </head>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="JG CORPORATION 企業概要｜業界でも数少ない不動産業界のコンサルティングニーズへ対応できる企業です。不動産、製造、保険業界に強みを持ちます。">
     <title>企業概要 ｜ JG CORPORATION</title>
-    <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg">
+    <link rel="icon" type="image/png" href="images/logo/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:wght@400;500;600&family=Yuji+Syuku&family=Yuji+Mai&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
@@ -25,6 +25,35 @@
             .prof-grid > .prof-card:nth-child(1) { grid-column: auto; }
             .prof-grid > .prof-card:nth-child(2) { grid-column: auto; }
             .prof-grid > .prof-card:nth-child(3) { grid-column: auto; }
+        }
+
+        /* ============== Hero banner: 画質改善（透過・拡大設定の見直し） ==============
+           原因: 既定の .page-banner-bg は
+             - inset: -6%（領域を外側に広げる）
+             - transform: scale(1.08) → scale(1.16) のアニメーション
+             で実質 約1.16〜1.23 倍の拡大表示となり画像がボヤけて見える。
+             ここでは「等倍に近い表示」＋「フィルター/オーバーレイの軽量化」で
+             元画像の解像感を活かす。 */
+        #page-about .page-banner-bg {
+            inset: 0;                          /* 領域の外側拡張をやめる */
+            transform: none;                   /* スケールをやめる */
+            animation: none;                   /* ドリフトアニメーションも停止 */
+            will-change: auto;
+            filter: brightness(.92) contrast(1.02) saturate(1.03);
+            /* image-rendering をブラウザに任せて高品質補間させる */
+            image-rendering: auto;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        /* オーバーレイをさらに軽くして写真の精細感を出す */
+        #page-about .page-banner::after {
+            background:
+                radial-gradient(ellipse 60% 50% at 75% 25%, rgba(230,0,126,0.08), transparent 70%),
+                linear-gradient(180deg, rgba(5,5,7,0.15) 0%, rgba(5,5,7,0.35) 100%);
+        }
+        /* ワイヤーフレームオーバーレイもさらに薄く */
+        #page-about .page-banner::before {
+            opacity: .08;
         }
     </style>
 </head>
@@ -477,16 +506,10 @@ LEGACY-SCRIPT-END -->
             padding: 22px 0;
         }
     }
+    /* 共通の .mission-body p（css/style.css）を継承し、ここでは余白だけ調整 */
     #mission .mission-body {
         margin: 0 0 48px;
     }
-    #mission .mission-body p {
-        font-size: 14px;
-        line-height: 2;
-        color: var(--c-text);
-        margin: 0 0 16px;
-    }
-    #mission .mission-body p:last-child { margin-bottom: 0; }
 
     /* ====== Before/After visualization (renewed) ====== */
     #mission .mission-vision {
@@ -760,6 +783,54 @@ LEGACY-SCRIPT-END -->
     #philosophy .section-head h2,
     #philosophy p {
         text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+    }
+
+    /* ====================================================================
+       Vision の背景写真：大型モニタでの「伸び・ボケ」対策
+       --------------------------------------------------------------------
+       原因: 元画像が 1024×576px と低解像度のため、超ワイドモニタでは
+             background-size: cover による拡大率が大きくなり、画像が
+             引き伸ばされてボヤけたように見える。
+       対策: index.html の Mission/Vision と同じ処理を適用。
+             1) 背景セクション本体は無地の暗色で埋める（はみ出し部分を吸収）
+             2) .bg-img の最大幅を画像の元解像度に近い 1920px で制限
+             3) 中央寄せ + 両サイドに暗色グラデーションでフェード
+       ==================================================================== */
+    #philosophy.photo-banner {
+        background-color: #050507;             /* 写真がはみ出した部分の地色 */
+    }
+    #philosophy.photo-banner .bg-img {
+        /* 画像を画面いっぱいに拡大しすぎないよう最大幅を設ける */
+        inset: 0 auto;                         /* 左右の inset:0 を解除 */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 1920px;                     /* 元解像度の上限相当 */
+    }
+    /* 両サイドの暗色フェード（max-width を超えるワイドモニタで自然に馴染ませる） */
+    #philosophy.photo-banner::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+            linear-gradient(to right,
+                rgba(5,5,7,0.95) 0%,
+                rgba(5,5,7,0)   8%,
+                rgba(5,5,7,0)   92%,
+                rgba(5,5,7,0.95) 100%);
+        pointer-events: none;
+    }
+    /* ワイドモニタ専用: フェード幅をさらに広げて自然な切り替えに */
+    @media (min-width: 1920px) {
+        #philosophy.photo-banner::before {
+            background:
+                linear-gradient(to right,
+                    rgba(5,5,7,1) 0%,
+                    rgba(5,5,7,0) 15%,
+                    rgba(5,5,7,0) 85%,
+                    rgba(5,5,7,1) 100%);
+        }
     }
 </style>
 

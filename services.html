@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="JG CORPORATION 提供サービス｜業務改革コンサルティング、CIO支援コンサルティング、テクノロジーコンサルティング、システムインテグレーションを提供します。課題分析から戦略立案、計画策定、改革推進、システム化まで一気通貫でのサポートが可能です。">
     <title>提供サービス ｜ JG CORPORATION</title>
-    <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg">
+    <link rel="icon" type="image/png" href="images/logo/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
@@ -37,17 +37,7 @@
             .page-banner h1 { font-size: 1.15rem; }
         }
 
-        /* ============== Mission body (Aboutページと統一: 全幅・左揃え) ============== */
-        .mission-body {
-            margin: 0;
-        }
-        .mission-body p {
-            font-size: 14px;
-            line-height: 2;
-            color: var(--c-text);
-            margin: 0 0 16px;
-        }
-        .mission-body p:last-child { margin-bottom: 0; }
+        /* .mission-body p の本文スタイルは共通 css/style.css に集約済み（ここでは個別指定なし） */
 
         /* ============== Service Lineup (6つのプロフェッショナルサービス) — リッチデザイン ============== */
         /* 既存 .service-grid のフラットレイアウトを上書きしてリッチ化 */
@@ -372,6 +362,30 @@
                 gap: 16px;
             }
             .svc-demo-cta__text { font-size: 17px; line-height: 1.8; }
+        }
+
+        /* ============== Hero banner: 画質改善（透過・拡大設定の見直し） ==============
+           ABOUTページと同じ手法。
+           既定の .page-banner-bg は inset:-6% + scale(1.08)→1.16 アニメで
+           実質約1.16〜1.23倍の拡大表示となり、画像がボヤけて見えるため、
+           Servicesページでも等倍表示＋オーバーレイ軽量化で解像感を活かす。 */
+        #page-services .page-banner-bg {
+            inset: 0;
+            transform: none;
+            animation: none;
+            will-change: auto;
+            filter: brightness(.92) contrast(1.02) saturate(1.03);
+            image-rendering: auto;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        #page-services .page-banner::after {
+            background:
+                radial-gradient(ellipse 60% 50% at 75% 25%, rgba(230,0,126,0.08), transparent 70%),
+                linear-gradient(180deg, rgba(5,5,7,0.15) 0%, rgba(5,5,7,0.35) 100%);
+        }
+        #page-services .page-banner::before {
+            opacity: .08;
         }
     </style>
 </head>

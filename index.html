@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="JG CORPORATION｜大手コンサルティングファーム出身者を中心に構成された、コンサルティングとテクノロジー、バイリンガルをコアケイパビリティとする企業です。東京・博多・セブ・シンガポールに拠点を持ちます。">
     <title>CONSULTING &amp; BEYOND ｜ JG CORPORATION</title>
-    <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg">
+    <link rel="icon" type="image/png" href="images/logo/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
@@ -26,16 +26,8 @@
             flex: 1 1 auto;
         }
 
-        /* Mission body (Aboutページと統一: 全幅・左揃え本文) */
-        .mission-body { margin: 0; }
-        .mission-body p {
-            font-size: 14px;
-            line-height: 2;
-            color: var(--c-text);
-            margin: 0 0 16px;
-        }
-        .mission-body p:last-child { margin-bottom: 0; }
-        /* 写真バナー内でも同じスタイルだが、テキスト視認性のためシャドウ */
+        /* .mission-body p の本文スタイルは共通 css/style.css に集約済み。
+           ここでは photo-banner 内でのテキスト視認性のためのシャドウだけ追加。 */
         .photo-banner .mission-body p {
             text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
         }
@@ -69,6 +61,58 @@
         #mission .section-head h2,
         #mission p {
             text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        /* ====================================================================
+           Mission / Vision の背景写真：大型モニタでの「伸び・ボケ」対策
+           --------------------------------------------------------------------
+           原因: 元画像が 1024×576px と低解像度のため、超ワイドモニタでは
+                 background-size: cover による拡大率が大きくなり、画像が
+                 引き伸ばされてボヤけたように見える。
+           対策: 1) 背景セクション本体は無地の暗色で埋める（はみ出し部分を吸収）
+                 2) .bg-img の最大幅を画像の元解像度に近い 1920px で制限
+                 3) 中央寄せ + 両サイドに暗色グラデーションでフェード
+                 4) コンテナの高さを画像の縦横比 16:9 に近づける（最小高で制限）
+           ==================================================================== */
+        #mission.photo-banner,
+        #vision.photo-banner {
+            background-color: #050507;            /* 写真がはみ出した部分の地色 */
+        }
+        #mission.photo-banner .bg-img,
+        #vision.photo-banner .bg-img {
+            /* 画像を画面いっぱいに拡大しすぎないよう最大幅を設ける */
+            inset: 0 auto;                         /* 左右の inset:0 を解除 */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1920px;                     /* 元解像度の上限相当 */
+        }
+        /* 両サイドの暗色フェード（max-width を超えるワイドモニタで自然に馴染ませる） */
+        #mission.photo-banner::before,
+        #vision.photo-banner::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                linear-gradient(to right,
+                    rgba(5,5,7,0.95) 0%,
+                    rgba(5,5,7,0)   8%,
+                    rgba(5,5,7,0)   92%,
+                    rgba(5,5,7,0.95) 100%);
+            pointer-events: none;
+        }
+        /* ワイドモニタ専用: フェード幅をさらに広げて自然な切り替えに */
+        @media (min-width: 1920px) {
+            #mission.photo-banner::before,
+            #vision.photo-banner::before {
+                background:
+                    linear-gradient(to right,
+                        rgba(5,5,7,1) 0%,
+                        rgba(5,5,7,0) 15%,
+                        rgba(5,5,7,0) 85%,
+                        rgba(5,5,7,1) 100%);
+            }
         }
     </style>
 </head>

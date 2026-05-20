@@ -798,7 +798,8 @@ p { margin: 0 0 1em; }
 
 .page-banner .eyebrow {
     font-family: var(--f-sans);
-    font-size: 11px;
+    font-size: 14px;                  /* 13px → 14px に拡大 */
+    font-weight: 700;                 /* Bold に変更（読みやすさ向上） */
     letter-spacing: .45em;
     color: var(--c-accent);
     margin-bottom: 22px;
@@ -831,8 +832,8 @@ p { margin: 0 0 1em; }
 }
 .page-banner .lead {
     max-width: 720px;
-    color: var(--c-text-mute);
-    font-size: 16px;
+    color: #ffffff;                   /* 薄いグレー → 白に変更（可読性向上） */
+    font-size: 14px;                  /* 16px → 14px に調整 */
     line-height: 2;
     padding-left: 16px;
     border-left: 2px solid var(--c-accent);
@@ -897,7 +898,8 @@ p { margin: 0 0 1em; }
 }
 .section-head .eyebrow {
     font-family: var(--f-sans);
-    font-size: 11px;
+    font-size: 14px;                  /* 13px → 14px に拡大 */
+    font-weight: 700;                 /* Bold に変更（読みやさ向上） */
     letter-spacing: .4em;
     color: var(--c-accent);
     margin-bottom: 14px;
@@ -1487,6 +1489,22 @@ p { margin: 0 0 1em; }
     background: linear-gradient(180deg, rgba(10,10,12,0.75) 0%, rgba(10,10,12,0.92) 100%);
     z-index: -1;
 }
+
+/* ===========================================================
+   Mission body — 各セクションの「説明文（長文段落）」共通スタイル
+   -----------------------------------------------------------
+   サイト全体で <div class="mission-body"> の中の <p> に
+   一貫した本文スタイルを適用する。各HTMLで個別に上書きしない
+   こと（唯一の正をここで管理する）。
+   =========================================================== */
+.mission-body { margin: 0; }
+.mission-body p {
+    font-size: 16px;                  /* 統一: 16px */
+    line-height: 2;
+    color: #ffffff;                   /* 統一: 白 */
+    margin: 0 0 16px;
+}
+.mission-body p:last-child { margin-bottom: 0; }
 
 /* ===========================================================
    Feature block — illustration as foreground content

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="RETECH VISION は不動産仲介会社、管理会社、家賃保証会社のためのデータ分析・業績管理高度化サービス。売上拡大を実現するための業績管理に特化したソリューションです。｜JG CORPORATION">
+    <title>RETECH VISION サービス案内｜JG CORPORATION</title>
+    <link rel="icon" type="image/png" href="images/logo/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* RETECH VISION page-specific accents
+           (旧 .rv-logo / .rv-tagline はサイト共通の .section-head + .eyebrow +
+            h2 スタイルに統一したため削除済み) */
+        .rv-targets {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+        .rv-targets .target {
+            border: 1px solid var(--c-line-strong);
+            padding: 28px 16px;
+            text-align: center;
+            background: rgba(20,20,24,0.5);
+            font-family: var(--f-sans);
+            font-weight: 700;
+            letter-spacing: .08em;
+        }
+        @media (max-width: 720px) { .rv-targets { grid-template-columns: 1fr; } }
+
+        .rv-num-list { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        @media (max-width: 900px) { .rv-num-list { grid-template-columns: 1fr; } }
+        .rv-num-item {
+            border: 1px solid var(--c-line);
+            padding: 28px;
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 20px;
+            background: rgba(20,20,24,0.5);
+        }
+        .rv-num-item .number {
+            font-family: var(--f-sans);
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--c-accent);
+            line-height: 1;
+        }
+        .rv-num-item .name {
+            font-family: var(--f-sans);
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 12px;
+            letter-spacing: .04em;
+        }
+        .rv-num-item ul { padding-left: 18px; color: var(--c-text-mute); font-size: 13px; line-height: 1.85; margin: 0; }
+
+        .rv-prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        @media (max-width: 900px) { .rv-prices { grid-template-columns: 1fr; } }
+        .rv-price-card {
+            border: 1px solid var(--c-line);
+            padding: 32px 28px;
+            background: rgba(20,20,24,0.55);
+            transition: border-color .3s, transform .3s;
+        }
+        .rv-price-card:hover { border-color: var(--c-accent); transform: translateY(-4px); }
+        .rv-price-card .num {
+            font-family: var(--f-sans);
+            font-size: 14px;
+            letter-spacing: .3em;
+            color: var(--c-accent);
+            margin-bottom: 16px;
+        }
+        .rv-price-card h3 {
+            font-family: var(--f-sans);
+            font-size: 22px;
+            letter-spacing: .06em;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        .rv-price-card .subtitle {
+            font-size: 13px;
+            color: var(--c-text-mute);
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--c-line);
+        }
+        .rv-price-card .desc { font-size: 13px; color: var(--c-text-mute); line-height: 1.9; margin-bottom: 18px; }
+        .rv-price-card .price {
+            font-family: var(--f-sans);
+            color: #fff;
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: .04em;
+        }
+
+        .rv-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        @media (max-width: 900px) { .rv-steps { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 500px) { .rv-steps { grid-template-columns: 1fr; } }
+        .rv-step {
+            border: 1px solid var(--c-line);
+            padding: 24px 16px;
+            text-align: center;
+            background: rgba(20,20,24,0.5);
+            font-size: 13px;
+            line-height: 1.6;
+            min-height: 96px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rv-cap-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .rv-cap-table th, .rv-cap-table td {
+            padding: 12px 14px;
+            border: 1px solid var(--c-line);
+            text-align: left;
+        }
+        .rv-cap-table th {
+            background: rgba(230,0,126,0.08);
+            font-family: var(--f-sans);
+            font-size: 12px;
+            letter-spacing: .15em;
+            color: #fff;
+        }
+        .rv-cap-table td { color: var(--c-text-mute); }
+
+        /* 各セクションの導入文（.section-head .sub）を統一: 16px / 白 / 他セクションと同じ幅 */
+        #page-retech .section-head .sub {
+            font-size: 16px;
+            color: #ffffff;
+            line-height: 2;
+            max-width: none;  /* 760px制限を解除し他のセクション（mission-body）と同じ幅に */
+        }
+    </style>
+</head>
+<body id="page-retech">
+
+<!-- ============== Header ============== -->
+<header class="site-header">
+    <div class="nav-inner">
+        <a href="index.html" class="brand" aria-label="JG CORPORATION">
+            <img class="logo-img" src="images/logo/jg-corporation-banner.png" alt="JG CORPORATION">
+        </a>
+        <button class="nav-toggle" aria-label="メニュー" aria-controls="nav-main">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-main" id="nav-main">
+            <li><a href="about.html">About</a></li>
+            <li><a href="feature.html">Feature</a></li>
+            <li class="has-dropdown">
+                <button type="button" class="nav-dd-toggle is-active" aria-haspopup="true" aria-expanded="false">Services<span class="nav-dd-caret" aria-hidden="true"></span></button>
+                <ul class="nav-dd-menu" role="menu">
+                    <li><a href="services.html">Services <span class="nav-dd-sub">サービス一覧</span></a></li>
+                    <li><a href="retechvision.html" class="is-active">Retech Vision <span class="nav-dd-sub">不動産業向け SaaS</span></a></li>
+                </ul>
+            </li>
+            <li><a href="recruitment.html">Recruitment</a></li>
+            <li><a href="contribution.html">Contribution</a></li>
+            <li class="has-dropdown">
+                <button type="button" class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Study Room<span class="nav-dd-caret" aria-hidden="true"></span></button>
+                <ul class="nav-dd-menu" role="menu">
+                    <li><a href="think.html">AI <span class="nav-dd-sub">AI Glossary</span></a></li>
+                    <li><a href="technology.html">Technology <span class="nav-dd-sub">Technology Glossary</span></a></li>
+                    <li><a href="it.html">IT <span class="nav-dd-sub">IT / SI Glossary</span></a></li>
+                    <li><a href="pm.html">PM <span class="nav-dd-sub">Project Management</span></a></li>
+                    <li><a href="consulting.html">Consulting <span class="nav-dd-sub">Consulting Glossary</span></a></li>
+                    <li><a href="solution.html">Solution <span class="nav-dd-sub">Solution Glossary</span></a></li>
+                    <li><a href="scm.html">SCM <span class="nav-dd-sub">SCM Glossary</span></a></li>
+                    <li><a href="management-accounting.html">管理会計 <span class="nav-dd-sub">Management Accounting</span></a></li>
+                    <li><a href="legal-tax-hr.html">法務・税務・労務 <span class="nav-dd-sub">Legal / Tax / HR</span></a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+
+<main class="page-wrapper">
+
+<!-- ============== Page banner ============== -->
+<section class="page-banner">
+    <div class="page-banner-bg" style="background-image: url('images/hero/retechvision.jpg');"></div>
+    <div class="banner-hud" aria-hidden="true"><span class="tl"></span><span class="tr"></span><span class="bl"></span><span class="br"></span></div>
+    <div class="container">
+        <h1 class="reveal">RETECH<br><span style="color: var(--c-accent);">VISION.</span></h1>
+        <p class="lead reveal">不動産企業のデータ分析、および業績管理の高度化に貢献するソリューション。売上拡大を実現するための業績管理に特化したサービスです。</p>
+    </div>
+</section>
+
+<!-- ============== Service target ============== -->
+<!-- 他のセクション (.section-head + .sub + .mission-body) と同じ標準構造に統一。
+     左寄せ、共通の .eyebrow / h2 / .sub / .mission-body スタイルを使用する。 -->
+<section class="section" id="service-target">
+    <div class="container">
+        <div class="section-head reveal">
+            <div class="eyebrow">Retech Vision</div>
+            <h2>RETECH <span class="accent">VISION</span></h2>
+            <p class="sub">不動産仲介会社、管理会社、家賃保証会社のためのデータ分析・業績管理高度化サービス</p>
+        </div>
+
+        <div class="rv-targets reveal">
+            <div class="target">不動産仲介会社</div>
+            <div class="target">管理会社</div>
+            <div class="target">家賃保証会社</div>
+        </div>
+
+        <div class="mission-body reveal">
+            <p>RETECH VISION は不動産企業のデータ分析、および業績管理の高度化に貢献します。</p>
+            <p>売上拡大を実現するための業績管理に特化したソリューションです。</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============== Challenges ============== -->
+<section class="section section--alt" id="challenges">
+    <div class="container">
+        <div class="section-head reveal">
+            <div class="eyebrow">Challenges</div>
+            <h2>データ分析の<span class="accent">課題</span></h2>
+        </div>
+
+        <div class="cols-2 reveal">
+            <div class="mission-body">
+                <h3 style="font-family: var(--f-sans); font-size: 20px; color: #fff; margin-bottom: 16px; line-height: 1.5;">集めたデータから得られている<span style="color: var(--c-accent);">考察</span>は？</h3>
+                <h3 style="font-family: var(--f-sans); font-size: 20px; color: #fff; margin-bottom: 24px; line-height: 1.5;">そこから実施している<span style="color: var(--c-accent);">アクション</span>は？</h3>
+                <p>ほとんどの企業にてデータ集計は行われていますが、集計したデータから得られる考察はどのようなものでしょうか？</p>
+                <ul>
+                    <li>「今期の売上合計は昨年より13％上回っている」</li>
+                    <li>「売上の30％は関東エリアである」</li>
+                    <li>「関東エリアでの平均賃料は60,000円である」</li>
+                </ul>
+            </div>
+            <div class="mission-body">
+                <p>
+                    こういった考察がほとんどであるように見受けられます。これらは経営管理上大切な情報ですが、次のアクションにつなげるデータ分析としては十分ではありません。これらの情報だけでは「去年より落ち込んでいるから頑張れ！」といったケツたたき型のマネジメントにしかつながらないためです。
+                </p>
+                <p class="accent-quote">
+                    データ分析は自社における売上の余白を見つけ出し、更なる売上向上の打ち手につながるものでなければいけません。
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============== Market Analysis ============== -->
+<section class="section" id="market-analysis">
+    <div class="container">
+        <div class="section-head reveal">
+            <div class="eyebrow">What We Offer</div>
+            <h2>RETECH VISION で<br><span class="accent">出来ること</span></h2>
+            <p class="sub">RETECH VISION では当社の保有する不動産マーケットデータとの対比分析が可能です。貴社のデータ分析を格段に高度化します。</p>
+        </div>
+
+        <h3 class="reveal" style="font-family: var(--f-sans); font-size: 18px; letter-spacing: .08em; margin-bottom: 24px; color: var(--c-accent-2);">マーケットデータとの対比分析の実現</h3>
+
+        <div class="rv-num-list reveal">
+            <div class="rv-num-item">
+                <div class="number">1</div>
+                <div>
+                    <div class="name">賃貸物件マスタ</div>
+                    <ul>
+                        <li>当社の賃貸物件マスタとの突合により、お客様のシェア視点での業績管理・データ分析が可能です。</li>
+                        <li>マスタは広さ、部屋数、立地、駅からの距離、賃料等様々な軸を保持しています。これらを活用してのデータ分析が可能です。</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="rv-num-item">
+                <div class="number">2</div>
+                <div>
+                    <div class="name">賃貸取引データ</div>
+                    <ul>
+                        <li>当社の賃貸取引データとの突合により、お客様のシェア視点での業績管理・データ分析が可能です。</li>
+                        <li>エリア別物件種別毎等様々な軸で空き部屋の募集件数および成約件数が確認できます。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============== Process (改善活動) ============== -->
+<section class="section section--alt" id="process">
+    <div class="container">
+        <div class="section-head reveal">
+            <div class="eyebrow">PDCA Cycle</div>
+            <h2>RETECH VISION からつながる<br><span class="accent">改善活動</span></h2>
+        </div>
+        <div class="mission-body reveal">
+            <p>
+                データ分析および業績管理は売上向上やコスト削減等の改善活動につながってはじめて意味が生まれます。改善余地という観点から分析手法を確立しモニタリング、改善施策を立案して実施、その結果を再度確認する。こういった流れが必要です。
+            </p>
+            <p>
+                また、これらの改善活動から目に見える経営効果を生み出していくためには PDCA サイクルとして継続し続けていくことが重要です。
+            </p>
+            <p class="accent-quote">
+                当社のサービスではこれらの改善をワンストップでご支援致します。
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ============== KPI Dashboard ============== -->
+<section class="section" id="kpi">
+    <div class="container">
+        <div class="section-head reveal">
+            <div class="eyebrow">KPI Dashboard</div>
+            <h2>業績管理 KPI<br><span class="accent">ダッシュボード</span></h2>
+        </div>
+        <div class="mission-body reveal">
+            <p>
+                当社では仲介会社様、管理会社様、家賃保証会社様に向けた業績管理 KPI のダッシュボードをご用意しています。マーケット対比分析と併せてお使い頂くことにより、より効果的に業績管理の高度化が実現可能となります。
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ============== Prices ============== -->
+<section class="section section--alt" id="prices">
+    <div class="container">
+        <div class="section-head reveal">
+            <div class="eyebrow">Service Menu</div>
+            <h2>サービスメニューと<br><span class="accent">価格</span></h2>
+            <p class="sub">RETECH VISION は以下のサービスメニューから選択して利用いただけます。</p>
+        </div>
+
+        <div class="rv-prices reveal">
+            <article class="rv-price-card">
+                <div class="num">01</div>
+                <h3>FIXED<br>REPORTING</h3>
+                <div class="subtitle">定型レポート作成代行サービス</div>
+                <p class="desc">現在お客様にて作成されているレポート作成業務について、当社にて代行作成致します。</p>
+                <div class="price">1帳票当たり月額10万円〜<br>2帳票目以降月額5万円〜</div>
+            </article>
+
+            <article class="rv-price-card">
+                <div class="num">02</div>
+                <h3>REPORTING &amp;<br>ANALYTICS</h3>
+                <div class="subtitle">提案型レポート作成サービス</div>
+                <p class="desc">貴社で保有のデータを確認させて頂き、改善余地を見つけ出すための業績管理手法をご提案いたします。協議のうえ、合意された内容にて定期的にレポートを作成致します。</p>
+                <div class="price">月額50万円〜</div>
+            </article>
+
+            <article class="rv-price-card">
+                <div class="num">03</div>
+                <h3>REFORM<br>SUPPORT</h3>
+                <div class="subtitle">改善支援サービス</div>
+                <p class="desc">データ分析にて発見された改善余地に対し、改善のための施策をお客様と共に検討します。これらの施策実施の支援から結果のモニタリング、改善施策の補正、再計画までをフルサポート致します。</p>
+                <div class="price">月額50万円〜</div>
+            </article>
+        </div>
+
+        <p class="reveal" style="color: var(--c-text-soft); font-size: 12px; margin-top: 32px;">
+            ※多くの場合データクレンジングが必要になります。データクレンジングはお客様（貴社システムベンダ様）での作業が必要となります。
+        </p>
+    </div>
+</section>
+
+<!-- ============== Architecture ============== -->
+<section class="section" id="architecture">
+    <div class="container">
+        <div class="section-head reveal">
+            <div class="eyebrow">Platform</div>
+            <h2>サービス<span class="accent">プラットフォーム</span></h2>
+        </div>
+        <div class="mission-body reveal">
+            <p>
+                本サービスプラットフォームは以下のような構成となっています。本サービスは基本的に当社がお客様データを預かり分析し結果をお渡しする形態ですが、これらのプラットフォームをお客様にご利用いただくサービス形態もご用意しております。
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ============== Contract Process ============== -->
+<section class="section section--alt" id="contract-process">
+    <div class="container">
+        <div class="section-head reveal">
+            <div class="eyebrow">Process</div>
+            <h2>サービスの<span class="accent">進め方</span></h2>
+            <p class="sub">お問合せ頂いた後、各種状況の確認をさせて頂いた後にご契約させて頂きます。</p>
+        </div>
+
+        <div class="rv-steps reveal" style="margin-bottom: 16px;">
+            <div class="rv-step">① お客様からの<br>お問合せ</div>
+            <div class="rv-step">② お打ち合わせ</div>
+            <div class="rv-step">③ 守秘義務締結</div>
+            <div class="rv-step">④ お客様保有データの<br>評価</div>
+        </div>
+        <div class="rv-steps reveal">
+            <div class="rv-step">⑤ お客様情報システムの<br>評価</div>
+            <div class="rv-step">⑥ 現行帳票類の<br>確認</div>
+            <div class="rv-step">⑦ お見積り</div>
+            <div class="rv-step">⑧ ご契約</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============== Other Analysis ============== -->
+<section class="section" id="other-analysis">
+    <div class="container">
+        <div class="section-head reveal">
+            <div class="eyebrow">Other Examples</div>
+            <h2>その他<span class="accent">分析例</span></h2>
+        </div>
+
+        <div class="mission-body reveal">
+            <p>
+                世の中には多くのデータ分析手法がありますが、そのほとんどが実践的ではありません。多くは今ある結果を理由づける分析となっています。
+            </p>
+            <p>
+                当社のサービスは、守秘義務契約を事前に取り交わさせて頂いたうえで貴社データをお預かりし、レポートを作成、そのうえで売上拡大やコスト削減につながる実践的なデータ分析を実施しご提案させて頂きます。
+            </p>
+            <p style="margin-top: 24px;">以下に分析例を紹介します。</p>
+            <ul>
+                <li>過去の審査結果より本来契約しても問題なかったであろうデータの分析と対象者の抽出</li>
+                <li>現状の募集物件における価格データの分析と改善余地のあるデータの抽出</li>
+                <li>SNSデータを収集しての自社不動産物件データに関するレピュテーション成分マップ分析</li>
+            </ul>
+
+            <p style="margin-top: 32px;">
+                当社がお付き合いするなかで管理会社様ではデータ分析のニーズがあまりないという話をよくお聞きします。これは管理会社様ではデータを取れる方＝入居者であり、入居後のお客様に提供するようなサービスがないためであるということです。
+            </p>
+            <p>
+                ですが、これはいいかえると入居者様に対し、あまり施策をうっていないからであると言い換えることができます。これまでのビジネスにとらわれない新しい施策の可能性を積極的に検討して初めてデータを分析してみるニーズが生まれてきます。お客様の新たな模索を私どもからもご支援できればと願います。
+            </p>
+            <p style="margin-top: 24px;">例：</p>
+            <ul>
+                <li>居住後 1 年目のお客様に対する清掃サービス</li>
+                <li>更新時期を控えたお客様に対する物件情報案内サービス</li>
+                <li>および、仲介手数料割引サービス、保証会社と提携しての保証料割引サービス</li>
+                <li>退去日のフレキシブル化サービス</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ============== Capabilities ============== -->
+<section class="section section--alt" id="capabilities">
+    <div class="container">
+        <div class="section-head reveal">
+            <div class="eyebrow">Capabilities</div>
+            <h2>当社の<span class="accent">ケイパビリティ</span></h2>
+            <p class="sub">以下のスキルを持つ当社データサイエンティストチームがご支援致します。</p>
+        </div>
+
+        <div class="reveal" style="overflow-x: auto;">
+            <table class="rv-cap-table">
+                <thead>
+                    <tr>
+                        <th>データ分析</th>
+                        <th>エンジニアリング</th>
+                        <th>不動産業界知見</th>
+                        <th>ビジネススキル</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>線形代数</td><td>SQL</td><td>管理会社業務オペレーション</td><td>ロジカルシンキング</td></tr>
+                    <tr><td>微分積分</td><td>Hadoop</td><td>家賃保証業務オペレーション</td><td>各種フレームワーク</td></tr>
+                    <tr><td>統計学</td><td>Python</td><td>仲介会社業務オペレーション</td><td>英語</td></tr>
+                    <tr><td>ベイズ統計</td><td>Excel</td><td>—</td><td>ドキュメンテーション</td></tr>
+                    <tr><td>確率統計</td><td>SPSS</td><td>—</td><td>改善コンサルティング</td></tr>
+                    <tr><td>回帰</td><td>SAS</td><td>—</td><td>プロジェクトマネジメント</td></tr>
+                    <tr><td>クラス分類</td><td>R</td><td>—</td><td>—</td></tr>
+                    <tr><td>クラスタリング</td><td>—</td><td>—</td><td>—</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ============== CTA ============== -->
+<section class="photo-banner">
+    <div class="bg-img" style="background-image: url('images/bg/retechvision-bg.jpg');"></div>
+    <div class="container">
+        <div class="reveal" style="text-align: center; max-width: 720px; margin: 0 auto;">
+            <div class="section-head" style="text-align: center;">
+                <div class="eyebrow">Get in Touch</div>
+                <h2>不動産業界の<br><span class="accent">業績管理高度化</span>を、<br>JG と共に</h2>
+            </div>
+            <p style="color: #ffffff; font-size: 16px; line-height: 2;">RETECH VISION に関するご相談・お問い合わせはこちらから。</p>
+            <div style="margin-top: 32px;">
+                <a href="services.html#contact" class="btn btn--primary">お問い合わせ</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- ============== Footer ============== -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img class="logo-img" src="images/logo/jg-corporation-banner.png" alt="JG CORPORATION">
+                <p>JG CORPORATION は、コンサルティングとテクノロジー、バイリンガルをコアケイパビリティとした企業です。東京・博多・セブ・シンガポールに拠点を持ちます。</p>
+            </div>
+            <div class="footer-col">
+                <h4>Sitemap</h4>
+                <div class="footer-sitemap">
+                    <div class="footer-sitemap__group">
+                        <p class="footer-sitemap__label">Main Menu</p>
+                        <ol class="footer-sitemap__list">
+                            <li>
+                                <span class="footer-sitemap__num">01</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="about.html">About<span class="footer-sitemap__en">私たちについて</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">02</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="feature.html">Feature<span class="footer-sitemap__en">私たちの強み</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">03</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="services.html">Services<span class="footer-sitemap__en">サービス</span></a>
+                                    <ul class="footer-sitemap__child">
+                                        <li><a href="retechvision.html">Retech Vision <span class="footer-sitemap__en">不動産業向け SaaS</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">04</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="recruitment.html">Recruitment<span class="footer-sitemap__en">採用情報</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">05</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="contribution.html">Contribution<span class="footer-sitemap__en">社会貢献</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">06</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="think.html">Study Room<span class="footer-sitemap__en">用語集</span></a>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="footer-sitemap__group">
+                        <p class="footer-sitemap__label">Study Room — Glossary</p>
+                        <ul class="footer-studyroom">
+                            <li><a href="think.html">AI<span class="footer-studyroom__en">AI</span></a></li>
+                            <li><a href="technology.html">Technology<span class="footer-studyroom__en">Tech</span></a></li>
+                            <li><a href="it.html">IT<span class="footer-studyroom__en">IT / SI</span></a></li>
+                            <li><a href="pm.html">PM<span class="footer-studyroom__en">PM</span></a></li>
+                            <li><a href="consulting.html">Consulting<span class="footer-studyroom__en">Consulting</span></a></li>
+                            <li><a href="solution.html">Solution<span class="footer-studyroom__en">Solution</span></a></li>
+                            <li><a href="scm.html">SCM<span class="footer-studyroom__en">SCM</span></a></li>
+                            <li><a href="management-accounting.html">管理会計<span class="footer-studyroom__en">M.Accounting</span></a></li>
+                            <li><a href="legal-tax-hr.html">法務・税務・労務<span class="footer-studyroom__en">Legal</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>© <span data-year></span> JG Corporation. All rights reserved.</div>
+            <div>
+                <a href="privacypolicy.html">個人情報保護方針</a> ・
+                <a href="privacypolicy.html#securitypolicy">情報セキュリティに関する方針</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

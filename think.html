@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="JG CORPORATION の AI 用語集（AI Glossary）。生成 AI・LLM・RAG・AI エージェント・MLOps など、ビジネスで押さえておきたい AI 関連 50 用語を、コンサルティングの現場目線でわかりやすく整理しました。">
+    <title>AI Glossary｜AI 用語集 ｜ JG CORPORATION</title>
+    <link rel="icon" type="image/png" href="images/logo/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        /* ============== AI Glossary page ============== */
+        #glossary-intro .lead-block {
+            max-width: 980px;
+            margin: 0 auto;
+            font-family: var(--f-jp);
+            line-height: 2.0;
+            color: var(--c-text-mute);
+        }
+        #glossary-intro .lead-block p {
+            margin-bottom: 18px;
+        }
+        #glossary-intro .lead-block p:last-child { margin-bottom: 0; }
+
+        /* Category navigation */
+        .gl-catnav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        .gl-catnav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border: 1px solid var(--c-line);
+            border-radius: 999px;
+            font-family: var(--f-sans);
+            font-size: 12px;
+            letter-spacing: .15em;
+            color: var(--c-text-mute);
+            text-decoration: none;
+            transition: border-color .25s ease, color .25s ease, background .25s ease;
+        }
+        .gl-catnav a:hover {
+            border-color: var(--c-accent);
+            color: #fff;
+            background: rgba(230,0,126,0.08);
+        }
+        .gl-catnav a i { color: var(--c-accent); font-size: 11px; }
+
+        /* Category header */
+        .gl-cat-head {
+            display: flex;
+            align-items: baseline;
+            gap: 18px;
+            margin-bottom: 32px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--c-line);
+        }
+        .gl-cat-head .cat-num {
+            font-family: var(--f-sans);
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--c-accent);
+            letter-spacing: .05em;
+        }
+        .gl-cat-head .cat-title {
+            font-family: var(--f-jp);
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--c-text);
+            letter-spacing: .04em;
+            margin: 0;
+        }
+        .gl-cat-head .cat-en {
+            font-family: var(--f-sans);
+            font-size: 12px;
+            letter-spacing: .25em;
+            color: var(--c-text-soft);
+            margin-left: auto;
+        }
+
+        /* Glossary grid */
+        .gl-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 56px;
+        }
+        .gl-item {
+            position: relative;
+            background: linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.005) 100%);
+            border: 1px solid var(--c-line);
+            border-left: 3px solid var(--c-accent);
+            border-radius: 4px;
+            padding: 22px 24px 22px;
+            transition: border-color .3s ease, transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease;
+        }
+        .gl-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--c-line-strong);
+            border-left-color: var(--c-accent);
+            box-shadow: 0 14px 32px -18px rgba(230,0,126,0.35),
+                        0 6px 18px -10px rgba(0,0,0,0.55);
+        }
+        .gl-item .gl-num {
+            font-family: var(--f-sans);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .2em;
+            color: var(--c-accent-2);
+            margin-bottom: 6px;
+        }
+        .gl-item .gl-term {
+            font-family: var(--f-jp);
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 0 4px;
+            letter-spacing: .03em;
+            line-height: 1.4;
+        }
+        .gl-item .gl-en {
+            font-family: var(--f-sans);
+            font-size: 11px;
+            letter-spacing: .12em;
+            color: var(--c-text-soft);
+            margin-bottom: 12px;
+        }
+        .gl-item .gl-desc {
+            font-family: var(--f-jp);
+            font-size: 13px;
+            line-height: 1.9;
+            color: var(--c-text-mute);
+            margin: 0;
+        }
+        .gl-item .gl-desc strong {
+            color: var(--c-text);
+            font-weight: 600;
+        }
+
+        @media (max-width: 800px) {
+            .gl-grid { grid-template-columns: 1fr; gap: 14px; }
+            .gl-cat-head { flex-wrap: wrap; gap: 10px; }
+            .gl-cat-head .cat-en { margin-left: 0; width: 100%; }
+            .gl-cat-head .cat-num { font-size: 24px; }
+            .gl-cat-head .cat-title { font-size: 19px; }
+            .gl-item { padding: 18px 20px; }
+            .gl-item .gl-term { font-size: 16px; }
+            .gl-catnav { gap: 8px; }
+            .gl-catnav a { padding: 8px 14px; font-size: 11px; }
+        }
+
+        /* Outro */
+        #glossary-outro .outro-card {
+            max-width: 880px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 48px 32px;
+            border: 1px solid var(--c-line);
+            border-radius: 4px;
+            background: linear-gradient(180deg, rgba(230,0,126,0.04), rgba(10,10,12,0.4));
+        }
+        #glossary-outro .outro-card h3 {
+            font-family: var(--f-jp);
+            font-size: 22px;
+            margin: 0 0 12px;
+            color: var(--c-text);
+        }
+        #glossary-outro .outro-card p {
+            color: var(--c-text-mute);
+            line-height: 1.9;
+            margin: 0 0 20px;
+        }
+        #glossary-outro .btn-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body id="page-think">
+
+<!-- ============== Header ============== -->
+<header class="site-header">
+    <div class="nav-inner">
+        <a href="index.html" class="brand" aria-label="JG CORPORATION">
+            <img class="logo-img" src="images/logo/jg-corporation-banner.png" alt="JG CORPORATION">
+        </a>
+        <button class="nav-toggle" aria-label="メニュー" aria-controls="nav-main">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-main" id="nav-main">
+            <li><a href="about.html">About</a></li>
+            <li><a href="feature.html">Feature</a></li>
+            <li class="has-dropdown">
+                <button type="button" class="nav-dd-toggle" aria-haspopup="true" aria-expanded="false">Services<span class="nav-dd-caret" aria-hidden="true"></span></button>
+                <ul class="nav-dd-menu" role="menu">
+                    <li><a href="services.html">Services <span class="nav-dd-sub">サービス一覧</span></a></li>
+                    <li><a href="retechvision.html">Retech Vision <span class="nav-dd-sub">不動産業向け SaaS</span></a></li>
+                </ul>
+            </li>
+            <li><a href="recruitment.html">Recruitment</a></li>
+            <li><a href="contribution.html">Contribution</a></li>
+            <li class="has-dropdown">
+                <button type="button" class="nav-dd-toggle is-active" aria-haspopup="true" aria-expanded="false">Study Room<span class="nav-dd-caret" aria-hidden="true"></span></button>
+                <ul class="nav-dd-menu" role="menu">
+                    <li><a href="think.html" class="is-active">AI <span class="nav-dd-sub">AI Glossary</span></a></li>
+                    <li><a href="technology.html">Technology <span class="nav-dd-sub">Technology Glossary</span></a></li>
+                    <li><a href="it.html">IT <span class="nav-dd-sub">IT / SI Glossary</span></a></li>
+                    <li><a href="pm.html">PM <span class="nav-dd-sub">Project Management</span></a></li>
+                    <li><a href="consulting.html">Consulting <span class="nav-dd-sub">Consulting Glossary</span></a></li>
+                    <li><a href="solution.html">Solution <span class="nav-dd-sub">Solution Glossary</span></a></li>
+                    <li><a href="scm.html">SCM <span class="nav-dd-sub">SCM Glossary</span></a></li>
+                    <li><a href="management-accounting.html">管理会計 <span class="nav-dd-sub">Management Accounting</span></a></li>
+                    <li><a href="legal-tax-hr.html">法務・税務・労務 <span class="nav-dd-sub">Legal / Tax / HR</span></a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+
+<main class="page-wrapper">
+
+<!-- ============== Page banner ============== -->
+<section class="page-banner">
+    <div class="page-banner-bg" style="background-image: url('images/hero/think.jpg');"></div>
+    <div class="banner-hud" aria-hidden="true"><span class="tl"></span><span class="tr"></span><span class="bl"></span><span class="br"></span></div>
+    <div class="container">
+        <h1 class="reveal">AI <span style="color: var(--c-accent);">GLOSSARY.</span></h1>
+        <p class="lead reveal">生成 AI、LLM、RAG、AI エージェント、MLOps──加速する AI の世界で押さえておきたいキーワードを、ビジネスとコンサルティングの現場目線でわかりやすく整理しました。</p>
+    </div>
+</section>
+
+<!-- ============== Intro / Category Nav ============== -->
+<section class="section" id="glossary-intro">
+    <div class="container">
+        <div class="section-head reveal" style="text-align:center;">
+            <div class="eyebrow">AI Glossary</div>
+            <h2>AI 関連用語集<br><span class="accent">50 のキーワード</span></h2>
+        </div>
+
+        <div class="lead-block reveal">
+            <p>AI への投資判断や社内活用を進めるうえで、関係者間で語彙が揃っていることは想像以上に重要です。「LLM」「RAG」「ファインチューニング」など耳にする機会は多いものの、いざ自社の文脈で説明しようとすると曖昧になりがちな概念は少なくありません。</p>
+            <p>本ページでは、JG CORPORATION のコンサルタント・エンジニアが普段クライアントとの議論で扱う AI 関連の重要キーワードを <strong style="color: var(--c-text);">5 つのカテゴリ・50 語</strong> に整理し、それぞれを 2〜3 行のシンプルな説明にまとめました。新人メンバーの学習用、社内勉強会の素材、お客様への説明の下地としてもお使いいただける構成です。</p>
+        </div>
+
+        <nav class="gl-catnav reveal" aria-label="カテゴリ目次">
+            <a href="#cat-foundation"><i class="fas fa-circle"></i>Foundations</a>
+            <a href="#cat-model"><i class="fas fa-circle"></i>Models &amp; Tech</a>
+            <a href="#cat-genai"><i class="fas fa-circle"></i>Generative AI</a>
+            <a href="#cat-agent"><i class="fas fa-circle"></i>Agents &amp; Apps</a>
+            <a href="#cat-ops"><i class="fas fa-circle"></i>Ops &amp; Governance</a>
+        </nav>
+    </div>
+</section>
+
+<!-- ============== Category 1: Foundations ============== -->
+<section class="section section--alt" id="cat-foundation">
+    <div class="container">
+        <div class="gl-cat-head reveal">
+            <span class="cat-num">01</span>
+            <h2 class="cat-title">AI の基礎</h2>
+            <span class="cat-en">FOUNDATIONS</span>
+        </div>
+
+        <div class="gl-grid reveal">
+            <article class="gl-item">
+                <div class="gl-num">No.01</div>
+                <h3 class="gl-term">人工知能（AI）</h3>
+                <div class="gl-en">Artificial Intelligence</div>
+                <p class="gl-desc">人間の知的活動の一部を機械に代替させる技術や学問領域の総称。<strong>「ルールに従う AI」から「データから学ぶ AI」、そして「自ら生成する AI」</strong>へと進化してきた。ビジネス文脈では「業務にどう組み込み価値を出すか」が論点となる。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.02</div>
+                <h3 class="gl-term">機械学習</h3>
+                <div class="gl-en">Machine Learning (ML)</div>
+                <p class="gl-desc">明示的にルールを書き下さず、<strong>データから規則性を抽出</strong>して予測・分類を行う手法。教師あり学習・教師なし学習・強化学習の 3 系統が代表的で、需要予測や故障検知など実務応用範囲が広い。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.03</div>
+                <h3 class="gl-term">深層学習</h3>
+                <div class="gl-en">Deep Learning</div>
+                <p class="gl-desc">多層のニューラルネットワークを用いる機械学習手法。<strong>画像・音声・自然言語</strong>といった非構造化データに対し圧倒的な精度を発揮し、現代の生成 AI ブームを支えている技術的基盤。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.04</div>
+                <h3 class="gl-term">ニューラルネットワーク</h3>
+                <div class="gl-en">Neural Network</div>
+                <p class="gl-desc">脳神経の働きに着想を得た計算モデル。入力層・隠れ層・出力層からなるノードの結合が学習を通じて重み付けされ、複雑なパターンを表現する。深層学習はこの「深い」ネットワークを指す。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.05</div>
+                <h3 class="gl-term">教師あり学習</h3>
+                <div class="gl-en">Supervised Learning</div>
+                <p class="gl-desc">入力と正解（ラベル）のペアを大量に用意し、モデルに対応関係を学習させる方法。需要予測、与信スコアリング、画像分類など、<strong>正解データが用意できる課題</strong>で広く活用される。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.06</div>
+                <h3 class="gl-term">教師なし学習</h3>
+                <div class="gl-en">Unsupervised Learning</div>
+                <p class="gl-desc">正解ラベルを与えず、データ自体の構造を学習する手法。<strong>顧客クラスタリング・異常検知・次元削減</strong>などに利用され、ラベル付けコストをかけずに洞察を得たい場面で有効。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.07</div>
+                <h3 class="gl-term">強化学習</h3>
+                <div class="gl-en">Reinforcement Learning</div>
+                <p class="gl-desc">エージェントが環境と試行錯誤しながら、報酬を最大化する行動方針を学ぶ手法。<strong>ゲーム AI・ロボット制御・推薦最適化</strong>に加え、近年では LLM の人間嗜好調整（RLHF）にも応用される。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.08</div>
+                <h3 class="gl-term">自然言語処理</h3>
+                <div class="gl-en">Natural Language Processing (NLP)</div>
+                <p class="gl-desc">人間の言葉をコンピュータが扱うための技術領域。形態素解析・構文解析・意味理解などを経て発展し、大規模言語モデル（LLM）の登場により「文脈を踏まえた高精度な処理」が一般化した。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.09</div>
+                <h3 class="gl-term">コンピュータビジョン</h3>
+                <div class="gl-en">Computer Vision</div>
+                <p class="gl-desc">画像・映像をコンピュータが理解する技術。<strong>物体検出・顔認識・OCR・外観検査</strong>などに応用され、製造業の品質検査自動化や、無人店舗での行動分析などで実用が進んでいる。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.10</div>
+                <h3 class="gl-term">特徴量</h3>
+                <div class="gl-en">Feature</div>
+                <p class="gl-desc">機械学習モデルが予測の手がかりとする入力変数。生データから有効な特徴量を作り出す「特徴量エンジニアリング」は、<strong>従来型機械学習の精度を左右する最重要工程</strong>とされてきた。</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ============== Category 2: Models & Tech ============== -->
+<section class="section" id="cat-model">
+    <div class="container">
+        <div class="gl-cat-head reveal">
+            <span class="cat-num">02</span>
+            <h2 class="cat-title">モデルと技術</h2>
+            <span class="cat-en">MODELS &amp; TECH</span>
+        </div>
+
+        <div class="gl-grid reveal">
+            <article class="gl-item">
+                <div class="gl-num">No.11</div>
+                <h3 class="gl-term">大規模言語モデル</h3>
+                <div class="gl-en">Large Language Model (LLM)</div>
+                <p class="gl-desc">膨大なテキストを学習し、文章生成・要約・翻訳・コード生成など幅広いタスクをこなす言語モデル。<strong>GPT・Claude・Gemini・Llama</strong> など主要ベンダー間で性能競争が続いている。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.12</div>
+                <h3 class="gl-term">トランスフォーマー</h3>
+                <div class="gl-en">Transformer</div>
+                <p class="gl-desc">2017 年に提案された「アテンション機構」を中核とするニューラルネット構造。<strong>長距離の文脈関係を効率的に扱える</strong>ことから、現在の LLM や画像生成 AI の事実上の標準アーキテクチャとなっている。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.13</div>
+                <h3 class="gl-term">基盤モデル</h3>
+                <div class="gl-en">Foundation Model</div>
+                <p class="gl-desc">大量・多様なデータで事前学習され、<strong>下流タスクへ汎用的に転用できるモデル</strong>。LLM や画像基盤モデルなどを含み、企業はこれらを土台に自社用途へ適応させる開発スタイルが主流となった。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.14</div>
+                <h3 class="gl-term">トークン</h3>
+                <div class="gl-en">Token</div>
+                <p class="gl-desc">LLM がテキストを扱う最小単位。単語より細かい場合も多く、<strong>API 料金や処理速度はトークン数に比例する</strong>。日本語は英語より多くのトークンを消費しやすく、コスト試算時の留意点となる。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.15</div>
+                <h3 class="gl-term">埋め込み（ベクトル化）</h3>
+                <div class="gl-en">Embedding</div>
+                <p class="gl-desc">テキストや画像を意味を保ったまま数値ベクトルに変換する技術。<strong>類似検索・分類・RAG の文書検索</strong>などの基盤となり、ベクトル DB と組み合わせて活用される。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.16</div>
+                <h3 class="gl-term">ベクトルデータベース</h3>
+                <div class="gl-en">Vector Database</div>
+                <p class="gl-desc">埋め込みベクトルを高速に検索することに特化した DB。<strong>Pinecone・Weaviate・pgvector</strong> などが代表的で、RAG 構成における社内ナレッジ検索のインフラとして広く採用される。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.17</div>
+                <h3 class="gl-term">ファインチューニング</h3>
+                <div class="gl-en">Fine-tuning</div>
+                <p class="gl-desc">事前学習済みモデルに自社データを追加学習させ、特定領域に最適化する手法。文体・専門用語の精度向上に効果的だが、<strong>RAG と比較してコストと運用負担が大きい</strong>ため適用領域を見極めたい。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.18</div>
+                <h3 class="gl-term">RLHF</h3>
+                <div class="gl-en">Reinforcement Learning from Human Feedback</div>
+                <p class="gl-desc">人間の評価データを用いて LLM の出力傾向を調整する技術。<strong>ChatGPT の自然で安全な応答</strong>を支える鍵となった手法で、モデルを「人間が好む方向」に近づける標準的アプローチとなっている。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.19</div>
+                <h3 class="gl-term">マルチモーダル AI</h3>
+                <div class="gl-en">Multimodal AI</div>
+                <p class="gl-desc">テキストに加え、<strong>画像・音声・動画・センサーデータなど複数の入力</strong>を統合的に扱う AI。図表を読み解いたり、画像と質問を組み合わせて回答できるため、業務適用範囲が大きく広がる。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.20</div>
+                <h3 class="gl-term">オープンソース LLM</h3>
+                <div class="gl-en">Open-source LLM</div>
+                <p class="gl-desc">モデル重みが公開された LLM。<strong>Llama・Mistral・Qwen</strong> などが代表で、社内環境で動かせるため機密性の高い業務に向く。一方で運用負荷や精度差を踏まえた構成設計が必要。</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ============== Category 3: Generative AI ============== -->
+<section class="section section--alt" id="cat-genai">
+    <div class="container">
+        <div class="gl-cat-head reveal">
+            <span class="cat-num">03</span>
+            <h2 class="cat-title">生成 AI とプロンプト</h2>
+            <span class="cat-en">GENERATIVE AI</span>
+        </div>
+
+        <div class="gl-grid reveal">
+            <article class="gl-item">
+                <div class="gl-num">No.21</div>
+                <h3 class="gl-term">生成 AI</h3>
+                <div class="gl-en">Generative AI</div>
+                <p class="gl-desc">テキスト・画像・音声・コードなどの<strong>新しいコンテンツを生み出す AI</strong>の総称。分析や予測にとどまらず、創造的作業や定型業務の自動化までを一気に担えるため、業務変革のインパクトが大きい。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.22</div>
+                <h3 class="gl-term">プロンプト</h3>
+                <div class="gl-en">Prompt</div>
+                <p class="gl-desc">生成 AI に対する指示文。<strong>「役割」「目的」「制約条件」「出力形式」</strong>を構造化することで応答品質が大きく変わる。プロンプト設計は新時代の業務スキルとして社員教育の対象になりつつある。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.23</div>
+                <h3 class="gl-term">プロンプトエンジニアリング</h3>
+                <div class="gl-en">Prompt Engineering</div>
+                <p class="gl-desc">LLM から望む出力を引き出すための設計技法。<strong>役割付与・例示・段階的思考（Chain-of-Thought）・出力フォーマット指定</strong>などを組み合わせ、再現性のある業務利用に近づけていく。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.24</div>
+                <h3 class="gl-term">Few-shot / Zero-shot</h3>
+                <div class="gl-en">Few-shot / Zero-shot Learning</div>
+                <p class="gl-desc">少数の例示（Few-shot）または例示なし（Zero-shot）で新しいタスクを解かせる手法。LLM の<strong>「文脈内学習」能力</strong>を活かし、追加学習なしに業務へ素早く適用できる。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.25</div>
+                <h3 class="gl-term">思考の連鎖</h3>
+                <div class="gl-en">Chain-of-Thought (CoT)</div>
+                <p class="gl-desc">「順を追って考えて」と促すことで、LLM の<strong>多段推論精度を引き上げる</strong>手法。数学・論理・複雑な業務判断に有効で、最近の高性能モデルは内部的に CoT を強化した「推論モデル」として進化している。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.26</div>
+                <h3 class="gl-term">RAG（検索拡張生成）</h3>
+                <div class="gl-en">Retrieval-Augmented Generation</div>
+                <p class="gl-desc">LLM に<strong>外部ナレッジ（社内文書など）を検索させてから回答させる</strong>方式。最新情報の反映・情報源の明示・機密性の確保ができるため、企業利用での標準パターンとなっている。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.27</div>
+                <h3 class="gl-term">ハルシネーション</h3>
+                <div class="gl-en">Hallucination</div>
+                <p class="gl-desc">LLM が<strong>もっともらしいが事実とは異なる内容</strong>を生成してしまう現象。業務適用時の最大リスクの一つで、RAG・出典明示・人間レビューといった多層的な対策の設計が必須となる。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.28</div>
+                <h3 class="gl-term">テキスト生成 AI</h3>
+                <div class="gl-en">Text Generation AI</div>
+                <p class="gl-desc">文書作成・要約・翻訳・メール下書きなどを担う生成 AI。<strong>ChatGPT・Claude・Gemini</strong> などが代表で、ホワイトカラー業務の生産性を大きく押し上げる中核ツールとなっている。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.29</div>
+                <h3 class="gl-term">画像生成 AI</h3>
+                <div class="gl-en">Image Generation AI</div>
+                <p class="gl-desc">テキストや画像からビジュアルを生成する AI。<strong>Stable Diffusion・DALL·E・Midjourney</strong> などが知られ、デザイン・広告・プロトタイプ制作の現場でクリエイティブ業務を加速している。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.30</div>
+                <h3 class="gl-term">コード生成 AI</h3>
+                <div class="gl-en">Code Generation AI</div>
+                <p class="gl-desc">プログラムのコードを自動生成・補完する AI。<strong>GitHub Copilot・Cursor・Claude Code</strong> などが代表で、エンジニアの生産性向上に加え、非エンジニアによるアプリ開発（Vibe Coding）も広がりつつある。</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ============== Category 4: Agents & Apps ============== -->
+<section class="section" id="cat-agent">
+    <div class="container">
+        <div class="gl-cat-head reveal">
+            <span class="cat-num">04</span>
+            <h2 class="cat-title">AI エージェントと活用領域</h2>
+            <span class="cat-en">AGENTS &amp; APPS</span>
+        </div>
+
+        <div class="gl-grid reveal">
+            <article class="gl-item">
+                <div class="gl-num">No.31</div>
+                <h3 class="gl-term">AI エージェント</h3>
+                <div class="gl-en">AI Agent</div>
+                <p class="gl-desc">LLM に「目標」と「使えるツール」を与え、<strong>自律的にタスクを分解・実行・検証</strong>させる仕組み。受動的なチャットから能動的なワーカーへと AI の役割を拡張する、次世代活用の中核トピック。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.32</div>
+                <h3 class="gl-term">マルチエージェント</h3>
+                <div class="gl-en">Multi-Agent System</div>
+                <p class="gl-desc">複数の AI エージェントが<strong>役割分担し協調する</strong>構成。プランナー・実行者・批評者といった分業により、単一エージェントでは難しい複雑なワークフローも安定して回せるようになる。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.33</div>
+                <h3 class="gl-term">関数呼び出し</h3>
+                <div class="gl-en">Function Calling / Tool Use</div>
+                <p class="gl-desc">LLM が外部 API や社内システムを<strong>「道具」として呼び出す</strong>機能。検索・予約・データ取得・購買などを LLM 経由でオーケストレーションでき、エージェント構築の中核技術となっている。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.34</div>
+                <h3 class="gl-term">MCP</h3>
+                <div class="gl-en">Model Context Protocol</div>
+                <p class="gl-desc">LLM と<strong>外部ツール／データソースをつなぐ標準プロトコル</strong>。各社の独自接続を共通化することで、AI エージェントが多様な業務システムへアクセスする際の実装コストを大きく下げる。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.35</div>
+                <h3 class="gl-term">AI-OCR</h3>
+                <div class="gl-en">AI-OCR</div>
+                <p class="gl-desc">機械学習を活用した<strong>高精度な文字認識</strong>。従来の OCR では難しかった手書き・くずし字・フリーフォーマット帳票にも対応できるため、紙業務のデジタル化を強力に推進する。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.36</div>
+                <h3 class="gl-term">チャットボット</h3>
+                <div class="gl-en">Chatbot</div>
+                <p class="gl-desc">人との対話インターフェースを通じて問い合わせ対応や案内を行うシステム。<strong>LLM ベースに置き換わることで自由会話に近い応答</strong>が可能となり、社内ヘルプデスクや顧客サポートに浸透している。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.37</div>
+                <h3 class="gl-term">レコメンドシステム</h3>
+                <div class="gl-en">Recommendation System</div>
+                <p class="gl-desc">ユーザーの嗜好や行動履歴から関心の高いアイテムを提示する AI。<strong>協調フィルタリング・コンテンツベース・ハイブリッド</strong>などの手法があり、EC や動画配信で売上を左右する基盤要素。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.38</div>
+                <h3 class="gl-term">異常検知</h3>
+                <div class="gl-en">Anomaly Detection</div>
+                <p class="gl-desc">正常時のパターンから外れた事象を自動で発見する技術。<strong>設備の故障兆候・不正取引・サイバー攻撃</strong>の検出など、業種を問わずリスク管理領域で重要度が増している。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.39</div>
+                <h3 class="gl-term">需要予測</h3>
+                <div class="gl-en">Demand Forecasting</div>
+                <p class="gl-desc">過去実績・季節性・外部要因（天候・為替・イベント）を統合し将来の需要を予測する AI。<strong>在庫適正化・欠品防止・生産計画</strong>の高度化に直結し、製造業・小売業の主要ユースケース。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.40</div>
+                <h3 class="gl-term">デジタルヒューマン</h3>
+                <div class="gl-en">Digital Human</div>
+                <p class="gl-desc">画像・音声・対話 AI を統合し、人のようにふるまう仮想キャラクター。受付・接客・教育コンテンツなどで活用が始まっており、<strong>ブランド体験のデジタル化</strong>を象徴する技術。</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ============== Category 5: Ops & Governance ============== -->
+<section class="section section--alt" id="cat-ops">
+    <div class="container">
+        <div class="gl-cat-head reveal">
+            <span class="cat-num">05</span>
+            <h2 class="cat-title">運用とガバナンス</h2>
+            <span class="cat-en">OPS &amp; GOVERNANCE</span>
+        </div>
+
+        <div class="gl-grid reveal">
+            <article class="gl-item">
+                <div class="gl-num">No.41</div>
+                <h3 class="gl-term">MLOps</h3>
+                <div class="gl-en">Machine Learning Operations</div>
+                <p class="gl-desc">機械学習モデルの<strong>開発・デプロイ・監視・再学習</strong>を継続的に回す運用体系。DevOps の発想を ML 領域へ拡張したもので、安定運用と継続的な精度改善の両立が目的となる。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.42</div>
+                <h3 class="gl-term">LLMOps</h3>
+                <div class="gl-en">LLM Operations</div>
+                <p class="gl-desc">LLM・生成 AI 特有の運用課題（<strong>プロンプト管理・コスト最適化・出力評価・ハルシネーション監視</strong>）に対応した運用フレームワーク。MLOps の発展形として急速に整備が進んでいる。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.43</div>
+                <h3 class="gl-term">AI ガバナンス</h3>
+                <div class="gl-en">AI Governance</div>
+                <p class="gl-desc">AI の<strong>利用方針・リスク管理・責任体制</strong>を組織として定める枠組み。EU AI Act など各国規制が整いつつあり、業務適用の前提として早期の方針整備が経営課題となっている。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.44</div>
+                <h3 class="gl-term">Responsible AI</h3>
+                <div class="gl-en">Responsible AI</div>
+                <p class="gl-desc">AI を<strong>公正・透明・安全・説明可能</strong>に運用するための原則と実装。倫理・法令・社会的影響を踏まえた設計を組み込み、ブランド毀損やトラブルを未然に防ぐ取り組み。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.45</div>
+                <h3 class="gl-term">説明可能 AI</h3>
+                <div class="gl-en">Explainable AI (XAI)</div>
+                <p class="gl-desc">AI の判断根拠を<strong>人間が理解できる形で説明</strong>する技術・取り組み。与信・医療・採用など説明責任が求められる領域で重要度が高く、SHAP・LIME などの手法が代表的。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.46</div>
+                <h3 class="gl-term">AI バイアス</h3>
+                <div class="gl-en">AI Bias</div>
+                <p class="gl-desc">学習データや設計に起因し AI 出力に<strong>偏りや差別が生じる</strong>問題。データの代表性確保・モニタリング・是正プロセスを運用に組み込まないと、組織のレピュテーションリスクに直結する。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.47</div>
+                <h3 class="gl-term">プロンプトインジェクション</h3>
+                <div class="gl-en">Prompt Injection</div>
+                <p class="gl-desc">悪意ある入力で<strong>LLM の挙動を乗っ取る攻撃</strong>。RAG で外部文書を読ませる構成では特に注意が必要で、入力検証・出力フィルタ・最小権限設計などの対策を組み合わせて防御する。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.48</div>
+                <h3 class="gl-term">データプライバシー</h3>
+                <div class="gl-en">Data Privacy</div>
+                <p class="gl-desc">AI に入力・学習されるデータの<strong>機密性・個人情報保護</strong>に関する論点。クラウド型 LLM の利用範囲・社内データの取り扱い・契約上の学習除外条項の確認は、導入時の必須チェック項目。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.49</div>
+                <h3 class="gl-term">エッジ AI</h3>
+                <div class="gl-en">Edge AI</div>
+                <p class="gl-desc">クラウドではなく<strong>端末・現場のデバイス側で AI 処理</strong>を行うアプローチ。低遅延・通信コスト削減・データ持ち出しなしという特性から、製造ラインや車載・モバイル用途で導入が広がる。</p>
+            </article>
+
+            <article class="gl-item">
+                <div class="gl-num">No.50</div>
+                <h3 class="gl-term">AGI（汎用人工知能）</h3>
+                <div class="gl-en">Artificial General Intelligence</div>
+                <p class="gl-desc">人間に匹敵する<strong>幅広い知的タスクを汎用的にこなす AI</strong>。実現時期や定義について議論は続くものの、各社の研究開発の長期目標として掲げられ、ビジネス・社会への影響を見据えた議論が始まっている。</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ============== Outro ============== -->
+<section class="section" id="glossary-outro">
+    <div class="container">
+        <div class="outro-card reveal">
+            <h3>AI 活用について、もう少し詳しく相談したい方へ</h3>
+            <p>用語の意味は分かったけれど、「自社で何から始めればよいか」「どこから投資対効果が出るのか」は、現場ごとに答えが大きく変わります。JG CORPORATION では、コンサルタントとエンジニアが一体となって、構想策定から PoC、本番運用までを伴走支援します。</p>
+            <div class="btn-row">
+                <a href="services.html#ai-services" class="btn btn--primary">AI 活用サービスを見る</a>
+                <a href="services.html#inquire" class="btn">お問い合わせ</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- ============== Footer ============== -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img class="logo-img" src="images/logo/jg-corporation-banner.png" alt="JG CORPORATION">
+                <p>JG CORPORATION は、コンサルティングとテクノロジー、バイリンガルをコアケイパビリティとした企業です。東京・博多・セブ・シンガポールに拠点を持ちます。</p>
+            </div>
+            <div class="footer-col">
+                <h4>Sitemap</h4>
+                <div class="footer-sitemap">
+                    <div class="footer-sitemap__group">
+                        <p class="footer-sitemap__label">Main Menu</p>
+                        <ol class="footer-sitemap__list">
+                            <li>
+                                <span class="footer-sitemap__num">01</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="about.html">About<span class="footer-sitemap__en">私たちについて</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">02</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="feature.html">Feature<span class="footer-sitemap__en">私たちの強み</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">03</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="services.html">Services<span class="footer-sitemap__en">サービス</span></a>
+                                    <ul class="footer-sitemap__child">
+                                        <li><a href="retechvision.html">Retech Vision <span class="footer-sitemap__en">不動産業向け SaaS</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">04</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="recruitment.html">Recruitment<span class="footer-sitemap__en">採用情報</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">05</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="contribution.html">Contribution<span class="footer-sitemap__en">社会貢献</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="footer-sitemap__num">06</span>
+                                <div class="footer-sitemap__body">
+                                    <a class="footer-sitemap__link" href="think.html">Study Room<span class="footer-sitemap__en">用語集</span></a>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="footer-sitemap__group">
+                        <p class="footer-sitemap__label">Study Room — Glossary</p>
+                        <ul class="footer-studyroom">
+                            <li><a href="think.html">AI<span class="footer-studyroom__en">AI</span></a></li>
+                            <li><a href="technology.html">Technology<span class="footer-studyroom__en">Tech</span></a></li>
+                            <li><a href="it.html">IT<span class="footer-studyroom__en">IT / SI</span></a></li>
+                            <li><a href="pm.html">PM<span class="footer-studyroom__en">PM</span></a></li>
+                            <li><a href="consulting.html">Consulting<span class="footer-studyroom__en">Consulting</span></a></li>
+                            <li><a href="solution.html">Solution<span class="footer-studyroom__en">Solution</span></a></li>
+                            <li><a href="scm.html">SCM<span class="footer-studyroom__en">SCM</span></a></li>
+                            <li><a href="management-accounting.html">管理会計<span class="footer-studyroom__en">M.Accounting</span></a></li>
+                            <li><a href="legal-tax-hr.html">法務・税務・労務<span class="footer-studyroom__en">Legal</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>© <span data-year></span> JG Corporation. All rights reserved.</div>
+            <div>
+                <a href="privacypolicy.html">個人情報保護方針</a> ・
+                <a href="privacypolicy.html#securitypolicy">情報セキュリティに関する方針</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

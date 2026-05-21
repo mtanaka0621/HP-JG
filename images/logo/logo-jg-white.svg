@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    JG CORPORATION logo — white wordmark on transparent.
+    The dot of the "i" in CORPORATION is rendered in magenta (#e6007e) via <tspan> so the
+    character positioning is handled by the font itself (no manual offsets that can break).
+    The character "i" (lowercase) is used because it naturally has a dot we can recolor.
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1400 280"
+     preserveAspectRatio="xMidYMid meet"
+     role="img"
+     aria-label="JG CORPORATION — CONSULTING & BEYOND">
+
+    <!-- Main wordmark: JG CORPORATiON (lowercase "i" → its dot is recolored magenta) -->
+    <text x="700" y="170"
+          text-anchor="middle"
+          font-family="'Arial Black','Helvetica Neue',Arial,sans-serif"
+          font-weight="900"
+          font-size="160"
+          letter-spacing="4"
+          fill="#ffffff"
+          xml:space="preserve">JG CORPORAT<tspan fill="#e6007e">i</tspan>ON</text>
+
+    <!-- Tagline -->
+    <text x="700" y="240"
+          text-anchor="middle"
+          font-family="'Arial','Helvetica Neue',sans-serif"
+          font-weight="500"
+          font-size="28"
+          letter-spacing="14"
+          fill="#ffffff">CONSULTING &amp; BEYOND</text>
+</svg>
